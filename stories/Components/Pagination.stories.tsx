@@ -1,0 +1,42 @@
+import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
+
+import { Pagination } from '../../src/components/Pagination';
+
+const meta = {
+  title: 'Components/Pagination',
+  component: Pagination,
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'centered',
+  },
+} satisfies Meta<typeof Pagination>;
+
+export default meta;
+
+type Story = StoryObj<any>;
+
+export const Basic: Story = {
+  render: () => {
+    const [page, setPage] = useState(3);
+    const pageCount = 8;
+    return (
+      <Pagination
+        page={page}
+        pageCount={pageCount}
+        onPageChange={setPage}
+        boundaryCount={1}
+        siblingCount={1}
+      />
+    );
+  },
+};
+
+export const WithEllipsis: Story = {
+  render: () => {
+    const [page, setPage] = useState(5);
+    const pageCount = 10;
+    return <Pagination page={page} pageCount={pageCount} onPageChange={setPage} />;
+  },
+};
+

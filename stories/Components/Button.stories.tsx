@@ -14,8 +14,8 @@ const meta = {
   },
   argTypes: {
     variant: {
-      control: 'inline-radio',
-      options: ['primary', 'secondary', 'danger'],
+      control: 'select',
+      options: ['primary', 'secondary', 'outline', 'ghost', 'ghostMuted', 'destructive', 'danger'],
     },
     size: {
       control: 'inline-radio',
@@ -27,7 +27,7 @@ const meta = {
     docs: {
       description: {
         component:
-          '基礎按鈕；變體與尺寸對應設計 tokens。與 Strapi 類設計系統文件相同，建議在 Storybook 中維護 **Controls** 與 **Docs** 作為單一真相來源。',
+          'Orbie Button 頁（Figma）：Primary、Secondary（灰底）、Outline、Ghost、Ghost Muted、Destructive；`danger` 同 Destructive。尺寸 Regular / Small。',
       },
     },
   },
@@ -43,8 +43,24 @@ export const Secondary: Story = {
   args: { variant: 'secondary', children: 'Secondary' },
 };
 
+export const Outline: Story = {
+  args: { variant: 'outline', children: 'Outline' },
+};
+
+export const Ghost: Story = {
+  args: { variant: 'ghost', children: 'Ghost' },
+};
+
+export const GhostMuted: Story = {
+  args: { variant: 'ghostMuted', children: 'Ghost muted' },
+};
+
+export const Destructive: Story = {
+  args: { variant: 'destructive', children: 'Delete' },
+};
+
 export const Danger: Story = {
-  args: { variant: 'danger', children: 'Delete' },
+  args: { variant: 'danger', children: 'Delete (alias)' },
 };
 
 export const Small: Story = {

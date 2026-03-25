@@ -1,16 +1,35 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import './Button.css';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'danger';
+/**
+ * Orbie Button page — Primary / Secondary (solid gray) / Outline / Ghost / Ghost Muted / Destructive.
+ * `danger` 為 `destructive` 別名（向後相容）。
+ */
+export type ButtonVariant =
+  | 'primary'
+  | 'secondary'
+  | 'outline'
+  | 'ghost'
+  | 'ghostMuted'
+  | 'destructive'
+  | 'danger';
+
+/** `md` = Regular（min-height 36）；`sm` = Small（min-height 32）。 */
 export type ButtonSize = 'sm' | 'md';
 
 export type ButtonProps = {
-  /** Visible label */
   children: ReactNode;
-  /** Visual style */
   variant?: ButtonVariant;
   size?: ButtonSize;
+  /** 左側圖示（設計稿約 13.25px） */
+  iconLeft?: ReactNode;
+  /** 右側圖示 */
+  iconRight?: ReactNode;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'>;
+
+function resolveVariant(variant: ButtonVariant): string {
+  return variant === 'danger' ? 'destructive' : variant;
+}
 
 export function Button({
   children,
@@ -18,15 +37,20 @@ export function Button({
   size = 'md',
   type = 'button',
   className,
+  iconLeft,
+  iconRight,
   ...rest
 }: ButtonProps) {
-  const classes = ['sds-button', `sds-button--${variant}`, `sds-button--${size}`, className]
+  const v = resolveVariant(variant);
+  const classes = ['sds-button', `sds-button--${v}`, `sds-button--${size}`, className]
     .filter(Boolean)
     .join(' ');
 
   return (
     <button type={type} className={classes} data-sds-component="Button" {...rest}>
-      {children}
+      {iconLeft ? <span className="sds-button__icon">{iconLeft}</span> : null}
+      <span className="sds-button__label">{children}</span>
+      {iconRight ? <span className="sds-button__icon">{iconRight}</span> : null}
     </button>
   );
 }
