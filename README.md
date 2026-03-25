@@ -24,7 +24,7 @@ npm -v
 
 ```bash
 git clone <repository-url>
-cd SyncAI-Frontend-Lib-DesignSystem
+cd SyncAI-Design-System
 npm install
 ```
 
