@@ -1,14 +1,70 @@
 /**
- * Design tokens — extend as your system grows (colors, spacing, radius, typography).
+ * Design tokens — Orbie UI KIT sync.
+ *
+ * Colors board: https://www.figma.com/design/jn4iJVWAQ0rR9lme6IVaQD/Orbie-UI-KIT?node-id=9-11646
+ * Badge examples: https://www.figma.com/design/jn4iJVWAQ0rR9lme6IVaQD/Orbie-UI-KIT?node-id=9-7795
  */
 :root {
-  --sds-color-bg: #ffffff;
-  --sds-color-fg: #0f172a;
-  --sds-color-muted: #64748b;
-  --sds-color-border: #e2e8f0;
-  --sds-color-primary: #4945ff;
+  /* --- Orbie palette (colors page — scales 100 → 10) --- */
+  --orbie-primary-violet-100: #0047c7;
+  --orbie-primary-violet-75: #4075d5;
+  --orbie-primary-violet-55: #739ae0;
+  --orbie-primary-violet-35: #a6bfeb;
+  --orbie-primary-violet-10: #e5edf9;
+
+  --orbie-primary-gray-100: #515353;
+  --orbie-primary-gray-75: #7d7e7e;
+  --orbie-primary-gray-55: #9fa0a0;
+  --orbie-primary-gray-35: #c2c3c3;
+  --orbie-primary-gray-10: #eeeeee;
+
+  --orbie-secondary-violet-100: #6d63b5;
+  --orbie-secondary-violet-75: #918ac7;
+  --orbie-secondary-violet-55: #afa9d6;
+  --orbie-secondary-violet-35: #ccc8e5;
+  --orbie-secondary-violet-10: #f0eff8;
+
+  --orbie-secondary-yellow-100: #f0bf60;
+  --orbie-secondary-yellow-75: #f4cf88;
+  --orbie-secondary-yellow-55: #f7dca8;
+  --orbie-secondary-yellow-35: #fae9c8;
+  --orbie-secondary-yellow-10: #fef9ef;
+
+  --orbie-secondary-green-100: #5cb85c;
+  --orbie-secondary-green-75: #85ca85;
+  --orbie-secondary-green-55: #a5d8a5;
+  --orbie-secondary-green-35: #c6e6c6;
+  --orbie-secondary-green-10: #eff8ef;
+
+  --orbie-secondary-blue-100: #4a90e2;
+  --orbie-secondary-blue-75: #77ace9;
+  --orbie-secondary-blue-55: #9bc2ef;
+  --orbie-secondary-blue-35: #c0d8f5;
+  --orbie-secondary-blue-10: #edf4fc;
+
+  --orbie-secondary-red-100: #ff6f63;
+  --orbie-secondary-red-75: #ff938a;
+  --orbie-secondary-red-55: #ffb0a9;
+  --orbie-secondary-red-35: #ffcdc8;
+  --orbie-secondary-red-10: #fff1ef;
+
+  --orbie-variant-100: #333535;
+  --orbie-variant-75: #717272;
+  --orbie-variant-55: #929393;
+  --orbie-variant-35: #b5b6b6;
+  --orbie-variant-10: #dadada;
+
+  --orbie-bg-surface: #ffffff;
+  --orbie-bg-muted: #f6f6f6;
+
+  /* --- Semantic aliases (app / components) --- */
+  --sds-color-bg: var(--orbie-bg-surface);
+  --sds-color-fg: var(--orbie-primary-gray-100);
+  --sds-color-muted: var(--orbie-primary-gray-55);
+  --sds-color-border: var(--orbie-variant-35);
+  --sds-color-primary: var(--orbie-primary-violet-100);
   --sds-color-primary-fg: #ffffff;
-  --sds-color-danger: #ef4444;
+  --sds-color-danger: var(--orbie-secondary-red-100);
   --sds-color-danger-fg: #ffffff;
   --sds-radius-md: 8px;
   --sds-radius-full: 9999px;
@@ -17,4 +73,31 @@
   --sds-font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --sds-text-sm: 0.875rem;
   --sds-leading-tight: 1.25;
+
+  /* Orbie — semantic fills (Badge / states) */
+  --sds-color-secondary-blue: var(--orbie-secondary-blue-100);
+  --sds-color-secondary-yellow: var(--orbie-secondary-yellow-100);
+  --sds-color-secondary-red: var(--orbie-secondary-red-100);
+  --sds-color-secondary-green: var(--orbie-secondary-green-100);
+  --sds-color-on-secondary: #ffffff;
+
+  /* Badge — layout (Figma: semantic/xs 8, absolute/1,5 6, min-height 24, py 3) */
+  --sds-badge-padding-x: 8px;
+  --sds-badge-padding-y: 3px;
+  --sds-badge-gap: 6px;
+  --sds-badge-min-height: 24px;
+  --sds-badge-icon-size: 13px;
+  --sds-badge-radius-rounded: 8px;
+  --sds-badge-radius-pill: 9999px;
+  --sds-badge-radius-numeric: 10px;
+
+  /* Badge — typography (Figma: paragraph mini / bold) */
+  --sds-badge-font-size: 12px;
+  --sds-badge-line-height: 16px;
+  --sds-badge-letter-spacing: 0.18px;
+
+  /* Badge — numeric counter */
+  --sds-badge-numeric-min-height: 16px;
+  --sds-badge-numeric-min-width: 16px;
+  --sds-badge-numeric-padding-x: 4px;
 }
