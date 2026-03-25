@@ -1,0 +1,218 @@
+/**
+ * Design tokens — Orbie UI KIT sync.
+ *
+ * Colors board: https://www.figma.com/design/jn4iJVWAQ0rR9lme6IVaQD/Orbie-UI-KIT?node-id=9-11646
+ * Badge examples: https://www.figma.com/design/jn4iJVWAQ0rR9lme6IVaQD/Orbie-UI-KIT?node-id=9-7795
+ * Button: node 9-7377 / 8-2840；Date Picker: 9-6764 / 8-3446
+ */
+:root {
+  /* --- Orbie palette (colors page — scales 100 → 10) --- */
+  --orbie-primary-violet-100: #0047c7;
+  --orbie-primary-violet-75: #4075d5;
+  --orbie-primary-violet-55: #739ae0;
+  --orbie-primary-violet-35: #a6bfeb;
+  --orbie-primary-violet-10: #e5edf9;
+
+  --orbie-primary-gray-100: #515353;
+  --orbie-primary-gray-75: #7d7e7e;
+  --orbie-primary-gray-55: #9fa0a0;
+  --orbie-primary-gray-35: #c2c3c3;
+  --orbie-primary-gray-10: #eeeeee;
+
+  --orbie-secondary-violet-100: #6d63b5;
+  --orbie-secondary-violet-75: #918ac7;
+  --orbie-secondary-violet-55: #afa9d6;
+  --orbie-secondary-violet-35: #ccc8e5;
+  --orbie-secondary-violet-10: #f0eff8;
+
+  --orbie-secondary-yellow-100: #f0bf60;
+  --orbie-secondary-yellow-75: #f4cf88;
+  --orbie-secondary-yellow-55: #f7dca8;
+  --orbie-secondary-yellow-35: #fae9c8;
+  --orbie-secondary-yellow-10: #fef9ef;
+
+  --orbie-secondary-green-100: #5cb85c;
+  --orbie-secondary-green-75: #85ca85;
+  --orbie-secondary-green-55: #a5d8a5;
+  --orbie-secondary-green-35: #c6e6c6;
+  --orbie-secondary-green-10: #eff8ef;
+
+  --orbie-secondary-blue-100: #4a90e2;
+  --orbie-secondary-blue-75: #77ace9;
+  --orbie-secondary-blue-55: #9bc2ef;
+  --orbie-secondary-blue-35: #c0d8f5;
+  --orbie-secondary-blue-10: #edf4fc;
+
+  --orbie-secondary-red-100: #ff6f63;
+  --orbie-secondary-red-75: #ff938a;
+  --orbie-secondary-red-55: #ffb0a9;
+  --orbie-secondary-red-35: #ffcdc8;
+  --orbie-secondary-red-10: #fff1ef;
+
+  --orbie-variant-100: #333535;
+  --orbie-variant-75: #717272;
+  --orbie-variant-55: #929393;
+  --orbie-variant-35: #b5b6b6;
+  --orbie-variant-10: #dadada;
+
+  --orbie-bg-surface: #ffffff;
+  --orbie-bg-muted: #f6f6f6;
+
+  /* --- Semantic aliases (app / components) --- */
+  --sds-color-bg: var(--orbie-bg-surface);
+  --sds-color-fg: var(--orbie-primary-gray-100);
+  --sds-color-muted: var(--orbie-primary-gray-55);
+  --sds-color-border: var(--orbie-variant-35);
+  --sds-color-primary: var(--orbie-primary-violet-100);
+  --sds-color-primary-fg: #ffffff;
+  --sds-color-danger: var(--orbie-secondary-red-100);
+  --sds-color-danger-fg: #ffffff;
+  --sds-radius-md: 8px;
+  --sds-radius-full: 9999px;
+  --sds-space-2: 8px;
+  --sds-space-3: 12px;
+  --sds-font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --sds-text-sm: 0.875rem;
+  --sds-leading-tight: 1.25;
+
+  /* Orbie — semantic fills (Badge / states) */
+  --sds-color-secondary-blue: var(--orbie-secondary-blue-100);
+  --sds-color-secondary-yellow: var(--orbie-secondary-yellow-100);
+  --sds-color-secondary-red: var(--orbie-secondary-red-100);
+  --sds-color-secondary-green: var(--orbie-secondary-green-100);
+  --sds-color-on-secondary: #ffffff;
+
+  /* Badge — layout (Figma: semantic/xs 8, absolute/1,5 6, min-height 24, py 3) */
+  --sds-badge-padding-x: 8px;
+  --sds-badge-padding-y: 3px;
+  --sds-badge-gap: 6px;
+  --sds-badge-min-height: 24px;
+  --sds-badge-icon-size: 13px;
+  --sds-badge-radius-rounded: 8px;
+  --sds-badge-radius-pill: 9999px;
+  --sds-badge-radius-numeric: 10px;
+
+  /* Badge — typography (Figma: paragraph mini / bold) */
+  --sds-badge-font-size: 12px;
+  --sds-badge-line-height: 16px;
+  --sds-badge-letter-spacing: 0.18px;
+
+  /* Badge — numeric counter */
+  --sds-badge-numeric-min-height: 16px;
+  --sds-badge-numeric-min-width: 16px;
+  --sds-badge-numeric-padding-x: 4px;
+
+  /* Alert Dialog — Orbie node 9:8006 / 9:7999 */
+  --sds-alert-dialog-radius: 12px;
+  --sds-alert-dialog-padding: 32px;
+  --sds-alert-dialog-shadow:
+    0 10px 15px 0 rgba(0, 0, 0, 0.1), 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+  --sds-alert-dialog-title-size: 20px;
+  --sds-alert-dialog-body-size: 14px;
+  --sds-alert-dialog-gap: 16px;
+  --sds-alert-dialog-width-desktop: 480px;
+  --sds-alert-dialog-width-mobile: 320px;
+  --sds-alert-dialog-btn-min-height: 36px;
+  --sds-alert-dialog-btn-padding-x: 16px;
+  --sds-alert-dialog-btn-padding-y: 7.5px;
+  --sds-alert-dialog-btn-shadow-sm:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+
+  /* Breadcrumb — Orbie node 9:7664 */
+  --sds-breadcrumb-min-height: 36px;
+  --sds-breadcrumb-gap: 8px;
+  --sds-breadcrumb-padding-x: 12px;
+  --sds-breadcrumb-icon-size: 16px;
+  --sds-breadcrumb-font-size: 14px;
+  --sds-breadcrumb-line-height: 21px;
+  --sds-breadcrumb-letter-spacing: 0.07px;
+
+  /* Button — Orbie Button page (9:7377, 9:7137, …) */
+  --sds-button-font-size: 14px;
+  --sds-button-line-height: 21px;
+  --sds-button-letter-spacing: 0.07px;
+  --sds-button-min-height-md: 36px;
+  --sds-button-padding-x-md: 16px;
+  --sds-button-padding-y-md: 7.5px;
+  --sds-button-min-height-sm: 32px;
+  --sds-button-padding-x-sm: 12px;
+  --sds-button-padding-y-sm: 5px;
+  --sds-button-icon-slot: 13.25px;
+  --sds-button-shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  --sds-button-ghost-muted-fg: #334155;
+
+  /* Date Picker — Orbie 9:6764, 9:6856 */
+  --sds-date-picker-gap: 16px;
+  --sds-date-picker-day-size: 48px;
+  --sds-date-picker-day-inner: 32px;
+  --sds-date-picker-day-radius: 4px;
+  --sds-date-picker-weekday-size: 32px;
+  --sds-date-picker-input-min-height: 32px;
+  --sds-date-picker-input-padding-x: 8px;
+  --sds-date-picker-input-padding-y: 5.5px;
+  --sds-date-picker-input-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --sds-date-picker-nav-size: 32px;
+  --sds-date-picker-panel-min-width: 342px;
+
+  /* Input / Field — Orbie (pages 8:5917 / 8:5643) */
+  --sds-input-min-height: 36px;
+  --sds-input-padding-x: 12px;
+  --sds-input-padding-y: 7.5px;
+  --sds-input-border-radius: var(--sds-radius-md); /* 8px */
+  --sds-input-shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+
+  --sds-input-border-default: #e2e8f0;
+  --sds-input-border-focus: #94a3b8;
+  --sds-input-ring-focus: #cbd5e1;
+
+  --sds-input-border-error: #ff6f63;
+  --sds-input-ring-error: #fca5a5;
+
+  --sds-input-text: var(--sds-color-fg); /* #515353 */
+  --sds-input-placeholder: var(--orbie-primary-gray-75); /* #9FA0A0 */
+  --sds-input-disabled-opacity: 0.5;
+
+  /* Field */
+  --sds-field-label-font-size: 14px;
+  --sds-field-label-line-height: 21px;
+  --sds-field-label-letter-spacing: 0.07px;
+  --sds-field-label-font-weight: 500;
+  --sds-field-gap: 4px;
+
+  /* Pagination — Orbie */
+  --sds-pagination-nav-height: 36px;
+  --sds-pagination-nav-padding-y: 7.5px;
+  --sds-pagination-nav-padding-x: 16px;
+  --sds-pagination-nav-radius: var(--sds-radius-md); /* 8px */
+  --sds-pagination-gap: 8px;
+  --sds-pagination-nav-fg: #334155;
+
+  --sds-pagination-border: #cbd5e1;
+  --sds-pagination-page-size: 34px;
+  --sds-pagination-page-height: 36px;
+  --sds-pagination-active-bg: rgba(255, 255, 255, 0.1);
+  --sds-pagination-ellipsis-size: 16px;
+
+  /* Progress — Orbie */
+  --sds-progress-track: #cbd5e1; /* Figma accent-3 */
+  --sds-progress-fill: var(--orbie-secondary-blue-100); /* #4A90E2 */
+  --sds-progress-height: 8px;
+  --sds-progress-radius: 12px;
+
+  /* Tabs — Orbie */
+  --sds-tabs-gap: 8px;
+  --sds-tabs-min-height: 29px;
+  --sds-tabs-min-width: 29px;
+  --sds-tabs-padding-y: 4px;
+  --sds-tabs-padding-x: 8px;
+  --sds-tabs-radius: 10px;
+
+  /* Tooltip — Orbie */
+  --sds-tooltip-width: 80px;
+  --sds-tooltip-padding-y: 6px;
+  --sds-tooltip-padding-x: 8px;
+  --sds-tooltip-radius: 8px;
+  --sds-tooltip-font-size: 12px;
+  --sds-tooltip-line-height: 16px;
+  --sds-tooltip-letter-spacing: 0.18px;
+}

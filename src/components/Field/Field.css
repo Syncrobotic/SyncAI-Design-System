@@ -1,0 +1,33 @@
+.sds-field {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sds-field-gap);
+  width: 100%;
+  font-family: var(--sds-font-sans);
+}
+
+.sds-field__label {
+  font-size: var(--sds-field-label-font-size);
+  line-height: var(--sds-field-label-line-height);
+  letter-spacing: var(--sds-field-label-letter-spacing);
+  font-weight: var(--sds-field-label-font-weight);
+  color: var(--sds-color-fg);
+}
+
+.sds-field__description {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--sds-color-muted);
+}
+
+.sds-field__error {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--sds-color-danger);
+}
+
+.sds-field__control {
+  width: 100%;
+}
+

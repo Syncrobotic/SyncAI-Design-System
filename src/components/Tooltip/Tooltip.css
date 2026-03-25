@@ -1,0 +1,90 @@
+.sds-tooltip__wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.sds-tooltip {
+  position: absolute;
+  z-index: 50;
+  width: 80px;
+  background: #000;
+  color: #fff;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-family: var(--sds-font-sans);
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.18px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sds-tooltip__arrow img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.sds-tooltip--top {
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(100% + 5px);
+}
+
+.sds-tooltip--bottom {
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(100% + 5px);
+}
+
+.sds-tooltip--left {
+  top: 50%;
+  transform: translateY(-50%);
+  right: calc(100% + 5px);
+}
+
+.sds-tooltip--right {
+  top: 50%;
+  transform: translateY(-50%);
+  left: calc(100% + 5px);
+}
+
+.sds-tooltip--top .sds-tooltip__arrow {
+  left: 50%;
+  transform: translateX(-50%);
+  top: -5px;
+  width: 11.5px;
+  height: 5px;
+  position: absolute;
+}
+
+.sds-tooltip--bottom .sds-tooltip__arrow {
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -5px;
+  width: 11.5px;
+  height: 5px;
+  position: absolute;
+}
+
+.sds-tooltip--left .sds-tooltip__arrow {
+  left: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 11.5px;
+  height: 5px;
+  position: absolute;
+}
+
+.sds-tooltip--right .sds-tooltip__arrow {
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 11.5px;
+  height: 5px;
+  position: absolute;
+}
+

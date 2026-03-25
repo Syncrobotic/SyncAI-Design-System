@@ -1,0 +1,36 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Getting Started/Installing the library" />
+
+# Installing the library
+
+函式庫以 **ESM** 建置，並產出 TypeScript 型別宣告。消費端需自行安裝 **React 18+**。
+
+## 從 monorepo / 路徑安裝
+
+在應用程式 `package.json` 指向此套件（依你的套件管理策略調整）：
+
+```json
+{
+  "dependencies": {
+    "@syncai/design-system": "workspace:*"
+  }
+}
+```
+
+## 在應用程式中導入
+
+```tsx
+import { Button } from '@syncai/design-system';
+import '@syncai/design-system/styles.css';
+```
+
+樣式檔會帶入設計 **tokens** 與元件樣式；若你已有全域主題，可只導入元件並覆寫 CSS 變數。
+
+## 建置函式庫
+
+```bash
+npm run build
+```
+
+輸出於 `dist/`：`index.js`、`index.d.ts`、`styles.css`。
