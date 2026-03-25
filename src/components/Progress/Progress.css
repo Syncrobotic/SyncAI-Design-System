@@ -1,0 +1,18 @@
+.sds-progress {
+  box-sizing: border-box;
+  position: relative;
+  height: var(--sds-progress-height);
+  width: 100%;
+  overflow: clip;
+  border-radius: var(--sds-progress-radius);
+  background: var(--sds-progress-track);
+}
+
+.sds-progress__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--sds-progress-fill);
+  border-radius: var(--sds-progress-radius);
+  width: 0%;
+}
+
