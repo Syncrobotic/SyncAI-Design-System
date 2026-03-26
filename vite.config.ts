@@ -3,7 +3,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
 
-/** Storybook 會共用此 Vite 設定；函式庫專用的 d.ts 只在「函式庫 build」時啟用。 */
+/** Storybook shares this Vite configuration; library-only d.ts generation is enabled only during the `build` for the library. */
 const isLibraryBuild =
   process.env.npm_lifecycle_event === 'build' &&
   !process.argv.some((arg) => arg.includes('storybook'));

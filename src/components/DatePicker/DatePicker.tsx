@@ -12,7 +12,7 @@ import './DatePicker.css';
 const WEEKDAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'] as const;
 
 export type DatePickerCalendarProps = {
-  /** 當月任意一天（僅年月有效） */
+  /** Any day in the current month (only year/month are used). */
   month: Date;
   selected: Date | null;
   onSelect: (date: Date) => void;
@@ -40,11 +40,11 @@ export function DatePickerCalendar({
   return (
     <div className={['sds-date-picker__calendar', className].filter(Boolean).join(' ')}>
       <div className="sds-date-picker__header">
-        <button type="button" className="sds-date-picker__nav" onClick={onPrevMonth} aria-label="上個月">
+        <button type="button" className="sds-date-picker__nav" onClick={onPrevMonth} aria-label="Previous month">
           <ChevronLeft strokeWidth={2} />
         </button>
         <p className="sds-date-picker__title">{title}</p>
-        <button type="button" className="sds-date-picker__nav" onClick={onNextMonth} aria-label="下個月">
+        <button type="button" className="sds-date-picker__nav" onClick={onNextMonth} aria-label="Next month">
           <ChevronRight strokeWidth={2} />
         </button>
       </div>
@@ -193,7 +193,7 @@ export function DatePicker({
       </button>
 
       {open ? (
-        <div className="sds-date-picker__popover" role="dialog" aria-modal="true" aria-label="選擇日期">
+        <div className="sds-date-picker__popover" role="dialog" aria-modal="true" aria-label="Select date">
           <DatePickerCalendar
             month={viewMonth}
             selected={value}

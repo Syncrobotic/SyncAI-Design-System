@@ -27,7 +27,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Orbie Button 頁（Figma）：Primary、Secondary（灰底）、Outline、Ghost、Ghost Muted、Destructive；`danger` 同 Destructive。尺寸 Regular / Small。',
+          'Orbie Button page (Figma): Primary, Secondary (gray background), Outline, Ghost, Ghost Muted, Destructive; `danger` is the same as Destructive. Sizes: Regular / Small.',
       },
     },
   },

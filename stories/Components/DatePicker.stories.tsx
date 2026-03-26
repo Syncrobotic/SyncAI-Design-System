@@ -29,7 +29,7 @@ export const WithValue: Story = {
   },
 };
 
-/** 僅月曆面板（Figma `Months=1 Month` / 9:6764） */
+/** Calendar-only panel (Figma `Months=1 Month` / 9:6764). */
 export const CalendarOnly: Story = {
   render: function Render() {
     const [month, setMonth] = useState(() => startOfMonth(new Date(2025, 4, 1)));

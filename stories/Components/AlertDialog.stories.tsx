@@ -21,14 +21,14 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Figma `Type=Desktop`（9:8006）：次要鍵在左、主鍵在右；文案左對齊。 */
+/** Figma `Type=Desktop` (9:8006): Secondary action on the left, primary action on the right; left-aligned copy. */
 export const Desktop: Story = {
   args: {
     layout: 'desktop',
   },
 };
 
-/** Figma `Type=Mobile`（9:7999）：主鍵在上、次要鍵在下、全寬；標題與內文置中。 */
+/** Figma `Type=Mobile` (9:7999): Primary action on top, secondary action below, full width; title and body are centered. */
 export const Mobile: Story = {
   args: {
     layout: 'mobile',

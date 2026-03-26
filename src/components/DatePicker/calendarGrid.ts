@@ -3,7 +3,7 @@ export type CalendarCell = {
   inCurrentMonth: boolean;
 };
 
-/** 固定 42 格（6 週 × 7 日），週日起始 — 對齊 Figma 月曆。 */
+/** Fixed 42 cells (6 weeks x 7 days), starting on Sunday — aligned with the Figma calendar. */
 export function getCalendarGrid(year: number, monthIndex: number): CalendarCell[] {
   const cells: CalendarCell[] = [];
   const first = new Date(year, monthIndex, 1);

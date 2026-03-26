@@ -20,7 +20,7 @@ export type TabsProps = {
   ariaLabel?: string;
 };
 
-export function Tabs({ items, value, onValueChange, className, ariaLabel = '分頁籤' }: TabsProps) {
+export function Tabs({ items, value, onValueChange, className, ariaLabel = 'Tabs' }: TabsProps) {
   return (
     <div role="tablist" aria-label={ariaLabel} className={['sds-tabs', className].filter(Boolean).join(' ')} data-sds-component="Tabs">
       {items.map((item) => {

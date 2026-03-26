@@ -3,7 +3,7 @@ import './Button.css';
 
 /**
  * Orbie Button page — Primary / Secondary (solid gray) / Outline / Ghost / Ghost Muted / Destructive.
- * `danger` 為 `destructive` 別名（向後相容）。
+ * `danger` is an alias for `destructive` (backwards compatible).
  */
 export type ButtonVariant =
   | 'primary'
@@ -14,16 +14,16 @@ export type ButtonVariant =
   | 'destructive'
   | 'danger';
 
-/** `md` = Regular（min-height 36）；`sm` = Small（min-height 32）。 */
+/** `md` = Regular (min-height 36); `sm` = Small (min-height 32). */
 export type ButtonSize = 'sm' | 'md';
 
 export type ButtonProps = {
   children: ReactNode;
   variant?: ButtonVariant;
   size?: ButtonSize;
-  /** 左側圖示（設計稿約 13.25px） */
+  /** Left icon (about 13.25px in the design). */
   iconLeft?: ReactNode;
-  /** 右側圖示 */
+  /** Right icon. */
   iconRight?: ReactNode;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'>;
 

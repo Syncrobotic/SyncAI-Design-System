@@ -118,10 +118,10 @@ export const TextOnly: Story = {
         Online
       </Badge>
       <Badge tone="red" shape="rounded">
-        系統
+        System
       </Badge>
       <Badge tone="blue" shape="rounded">
-        裝置
+        Device
       </Badge>
     </div>
   ),

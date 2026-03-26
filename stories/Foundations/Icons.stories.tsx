@@ -6,12 +6,13 @@ function IconsGrid() {
   return (
     <div style={{ fontFamily: 'var(--sds-font-sans)', padding: 16 }}>
       <p style={{ color: 'var(--sds-color-muted)', marginBottom: 16, maxWidth: 640 }}>
-        來源：Figma <code>icons</code> 頁（node <code>9:11137</code>）。元件以{' '}
-        <code>lucide-react</code> 對應相同 slug；<code>gpu</code> 在 Lucide 無同名圖示，使用 <code>Cpu</code>。
+        Source: Figma <code>icons</code> page (node <code>9:11137</code>). Components use{' '}
+        <code>lucide-react</code> to match the same slugs; <code>gpu</code> has no matching Lucide icon, so we use{' '}
+        <code>Cpu</code>.
       </p>
       <p style={{ marginBottom: 16, fontSize: 13 }}>
         <a href={ORBIE_UI_KIT_FIGMA_FILE} target="_blank" rel="noreferrer">
-          在 Figma 中開啟 Orbie UI KIT
+          Open Orbie UI KIT in Figma
         </a>
       </p>
       <div

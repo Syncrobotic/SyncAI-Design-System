@@ -19,7 +19,7 @@ function readCssVarHex(varName: string): string {
   return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
 }
 
-/** 讀取 :root 上的 token，避免 Story 與 tokens.css 各寫一份 hex。 */
+/** Read tokens from :root to avoid duplicating hex values between Story and tokens.css. */
 function useOrbieHexGrid(): Record<string, string> | null {
   const [map, setMap] = useState<Record<string, string> | null>(null);
   useLayoutEffect(() => {
@@ -43,8 +43,8 @@ function ColorsTable() {
   return (
     <div style={{ fontFamily: 'var(--sds-font-sans)', padding: 16 }}>
       <p style={{ color: 'var(--sds-color-muted)', marginBottom: 16, maxWidth: 560 }}>
-        來源：Figma Orbie UI KIT — <code>colors</code>（node <code>9:11646</code>），已同步為{' '}
-        <code>tokens.css</code> 的 <code>--orbie-*</code> 變數。
+        Source: Figma Orbie UI KIT — <code>colors</code> (node <code>9:11646</code>). Synchronized into{' '}
+        <code>tokens.css</code> as <code>--orbie-*</code> variables.
       </p>
       <table style={{ borderCollapse: 'collapse', width: '100%', maxWidth: 720 }}>
         <thead>

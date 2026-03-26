@@ -29,7 +29,7 @@ export type SidebarProps = {
   onItemClick?: (item: SidebarItem) => void;
 };
 
-export function Sidebar({ collapsed = false, groups, ariaLabel = '側欄', className, onItemClick }: SidebarProps) {
+export function Sidebar({ collapsed = false, groups, ariaLabel = 'Sidebar', className, onItemClick }: SidebarProps) {
   const rootClass = ['sds-sidebar', collapsed ? 'sds-sidebar--collapsed' : 'sds-sidebar--expanded', className]
     .filter(Boolean)
     .join(' ');

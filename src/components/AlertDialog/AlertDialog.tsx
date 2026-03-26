@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { useId } from 'react';
 import './AlertDialog.css';
 
-/** Figma `Type=Desktop`（9:8006）與 `Type=Mobile`（9:7999）。 */
+/** Figma `Type=Desktop` (9:8006) and `Type=Mobile` (9:7999). */
 export type AlertDialogLayout = 'desktop' | 'mobile';
 
 export type AlertDialogAction = {
@@ -18,7 +18,7 @@ export type AlertDialogProps = {
   secondaryAction: AlertDialogAction;
   primaryAction: AlertDialogAction;
   className?: string;
-  /** 設為 true 時加上 `aria-modal`（外層需搭配遮罩與 focus trap 才算完整 modal）。 */
+  /** When set to true, adds `aria-modal` (the outer scope should include an overlay and focus trap for a complete modal). */
   modal?: boolean;
 };
 

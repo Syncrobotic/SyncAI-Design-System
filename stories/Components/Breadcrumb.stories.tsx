@@ -15,7 +15,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** 對齊 Figma Examples（9:7675）：Home → … → Components → 目前頁。 */
+/** Matches Figma Examples (9:7675): Home → … → Components → Current page. */
 export const OrbieExample: Story = {
   args: {
     items: [
@@ -30,9 +30,9 @@ export const OrbieExample: Story = {
 export const SimplePath: Story = {
   args: {
     items: [
-      { label: '首頁', href: '#' },
-      { label: '設定', href: '#' },
-      { label: '帳號', current: true },
+      { label: 'Home', href: '#' },
+      { label: 'Settings', href: '#' },
+      { label: 'Account', current: true },
     ],
   },
 };

@@ -2,7 +2,8 @@ import { addons } from '@storybook/manager-api';
 import { create } from '@storybook/theming/create';
 
 /**
- * Strapi Design System 使用清晰的品牌色與文件風格；此處採相近的「設計系統文件」基調（亮色、品牌主色）。
+ * Strapi Design System uses crisp brand colors and a documentation-style layout; here we adopt a similar
+ * "design system documentation" look (light theme, brand primary color).
  * @see https://design-system.strapi.io/
  */
 const theme = create({
