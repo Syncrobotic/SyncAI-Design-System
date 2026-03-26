@@ -49,7 +49,6 @@ function IconsGrid() {
 }
 
 const meta = {
-  title: 'Foundations/Icons',
   component: IconsGrid,
   tags: ['autodocs'],
   parameters: {

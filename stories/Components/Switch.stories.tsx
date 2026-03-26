@@ -4,8 +4,11 @@ import { useState } from 'react';
 import { Switch } from '../../src/components/Switch';
 
 const meta = {
-  title: 'Components/Switch',
   component: Switch,
+  args: {
+    checked: false,
+    onCheckedChange: (_checked: boolean) => {},
+  },
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
@@ -14,7 +17,7 @@ const meta = {
 
 export default meta;
 
-type Story = StoryObj<any>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => {

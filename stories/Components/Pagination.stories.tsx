@@ -4,8 +4,12 @@ import { useState } from 'react';
 import { Pagination } from '../../src/components/Pagination';
 
 const meta = {
-  title: 'Components/Pagination',
   component: Pagination,
+  args: {
+    page: 1,
+    pageCount: 8,
+    onPageChange: (_page: number) => {},
+  },
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
@@ -14,7 +18,7 @@ const meta = {
 
 export default meta;
 
-type Story = StoryObj<any>;
+type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   render: () => {

@@ -4,8 +4,12 @@ import { useState } from 'react';
 import { Tabs, type TabsItem } from '../../src/components/Tabs';
 
 const meta = {
-  title: 'Components/Tabs',
   component: Tabs,
+  args: {
+    items: [] as TabsItem[],
+    value: 'label',
+    onValueChange: (_value: string) => {},
+  },
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
@@ -14,7 +18,7 @@ const meta = {
 
 export default meta;
 
-type Story = StoryObj<any>;
+type Story = StoryObj<typeof meta>;
 
 const items: TabsItem[] = [
   { id: 'label', label: 'Label', counter: 1 },

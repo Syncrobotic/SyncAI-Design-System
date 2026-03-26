@@ -175,7 +175,6 @@ function ColorsTable() {
 }
 
 const meta = {
-  title: 'Foundations/Colors',
   component: ColorsTable,
   tags: ['autodocs'],
   parameters: {

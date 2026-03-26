@@ -4,12 +4,16 @@ import { useState } from 'react';
 import { DatePicker, DatePickerCalendar, startOfMonth } from '../../src/components/DatePicker';
 
 const meta = {
-  title: 'Components/DatePicker',
+  component: DatePicker,
+  args: {
+    value: null,
+    onChange: (_value: Date | null) => {},
+  },
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
   },
-} satisfies Meta;
+} satisfies Meta<typeof DatePicker>;
 
 export default meta;
 

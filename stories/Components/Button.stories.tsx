@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '../../src/components/Button';
 
 const meta = {
-  title: 'Components/Button',
   component: Button,
   tags: ['autodocs'],
   args: {
@@ -11,16 +10,6 @@ const meta = {
     variant: 'primary',
     size: 'md',
     disabled: false,
-  },
-  argTypes: {
-    variant: {
-      control: 'select',
-      options: ['primary', 'secondary', 'outline', 'ghost', 'ghostMuted', 'destructive', 'danger'],
-    },
-    size: {
-      control: 'inline-radio',
-      options: ['sm', 'md'],
-    },
   },
   parameters: {
     layout: 'centered',
