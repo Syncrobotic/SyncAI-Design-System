@@ -1,0 +1,79 @@
+@import 'tailwindcss';
+
+/* Orbie design tokens (palette + component-level sizing) */
+@import './tokens.css';
+
+/*
+ * Map Orbie design tokens → shadcn/Tailwind semantic color system.
+ * Usage: bg-primary, text-foreground, border-border, etc.
+ */
+@theme inline {
+  /* ── Semantic colors ── */
+  --color-background: var(--orbie-bg-surface);
+  --color-foreground: var(--orbie-primary-gray-100);
+
+  --color-card: var(--orbie-bg-surface);
+  --color-card-foreground: var(--orbie-primary-gray-100);
+
+  --color-popover: var(--orbie-bg-surface);
+  --color-popover-foreground: var(--orbie-primary-gray-100);
+
+  --color-primary: var(--orbie-primary-violet-100);
+  --color-primary-foreground: #ffffff;
+
+  --color-secondary: var(--orbie-primary-gray-10);
+  --color-secondary-foreground: var(--orbie-primary-gray-100);
+
+  --color-muted: var(--orbie-bg-muted);
+  --color-muted-foreground: var(--orbie-primary-gray-75);
+
+  --color-accent: var(--orbie-primary-violet-10);
+  --color-accent-foreground: var(--orbie-primary-violet-100);
+
+  --color-destructive: var(--orbie-secondary-red-100);
+  --color-destructive-foreground: #ffffff;
+
+  --color-border: var(--orbie-variant-35);
+  --color-input: var(--sds-input-border-default);
+  --color-ring: var(--orbie-primary-violet-75);
+
+  /* ── Orbie secondary palette (Badge tones, etc.) ── */
+  --color-orbie-blue: var(--orbie-secondary-blue-100);
+  --color-orbie-blue-bg: var(--orbie-secondary-blue-10);
+  --color-orbie-yellow: var(--orbie-secondary-yellow-100);
+  --color-orbie-yellow-bg: var(--orbie-secondary-yellow-10);
+  --color-orbie-red: var(--orbie-secondary-red-100);
+  --color-orbie-red-bg: var(--orbie-secondary-red-10);
+  --color-orbie-green: var(--orbie-secondary-green-100);
+  --color-orbie-green-bg: var(--orbie-secondary-green-10);
+
+  /* ── Sidebar ── */
+  --color-sidebar: var(--orbie-bg-muted);
+  --color-sidebar-foreground: var(--orbie-primary-gray-100);
+  --color-sidebar-accent: var(--orbie-primary-violet-10);
+  --color-sidebar-accent-foreground: var(--orbie-primary-violet-100);
+  --color-sidebar-border: var(--orbie-variant-10);
+
+  /* ── Radius ── */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+
+  /* ── Font ── */
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ── Base layer ── */
+@layer base {
+  *,
+  ::after,
+  ::before {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+}
