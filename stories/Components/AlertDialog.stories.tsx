@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { AlertDialog } from '../../src/components/AlertDialog';
+import { Button } from '../../src/components/Button';
 
 const meta = {
   component: AlertDialog,
@@ -38,6 +39,12 @@ export const Desktop: Story = {
   args: {
     layout: 'desktop',
   },
+  render: (args) => (
+    <AlertDialog
+      {...args}
+      trigger={<Button variant="outline">Show Dialog</Button>}
+    />
+  ),
 };
 
 /** Figma `Type=Mobile` (9:7999): Primary action on top, secondary action below, full width; title and body are centered. */
@@ -45,6 +52,12 @@ export const Mobile: Story = {
   args: {
     layout: 'mobile',
   },
+  render: (args) => (
+    <AlertDialog
+      {...args}
+      trigger={<Button variant="outline">Show Dialog</Button>}
+    />
+  ),
 };
 
 export const WithoutDescription: Story = {
@@ -52,4 +65,10 @@ export const WithoutDescription: Story = {
     layout: 'desktop',
     description: undefined,
   },
+  render: (args) => (
+    <AlertDialog
+      {...args}
+      trigger={<Button variant="outline">Show Dialog</Button>}
+    />
+  ),
 };
