@@ -1,5 +1,58 @@
-import './tokens.css';
+import './globals.css';
 
+/* ── shadcn/ui primitives ── */
+export {
+  AlertDialog as AlertDialogRoot,
+  AlertDialogPortal,
+  AlertDialogOverlay,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogFooter,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogAction as AlertDialogActionPrimitive,
+  AlertDialogCancel,
+} from './components/ui/alert-dialog';
+
+export {
+  Button as ButtonPrimitive,
+  buttonVariants,
+} from './components/ui/button';
+
+export {
+  Breadcrumb as BreadcrumbPrimitive,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbEllipsis,
+} from './components/ui/breadcrumb';
+
+export { Badge as BadgePrimitive, badgeVariants } from './components/ui/badge';
+export { Input as InputPrimitive, Textarea } from './components/ui/input';
+export { Label } from './components/ui/label';
+export { Progress as ProgressPrimitive } from './components/ui/progress';
+export { Switch as SwitchPrimitive } from './components/ui/switch';
+
+export {
+  Tabs as TabsRoot,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from './components/ui/tabs';
+
+export {
+  Tooltip as TooltipRoot,
+  TooltipTrigger,
+  TooltipContent,
+  TooltipProvider,
+} from './components/ui/tooltip';
+
+export { cn } from './lib/utils';
+
+/* ── Orbie components (high-level) ── */
 export {
   AlertDialog,
   type AlertDialogAction,
