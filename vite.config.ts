@@ -2,6 +2,7 @@ import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
+import tailwindcss from '@tailwindcss/vite';
 
 /** Storybook shares this Vite configuration; library-only d.ts generation is enabled only during the `build` for the library. */
 const isLibraryBuild =
@@ -11,6 +12,7 @@ const isLibraryBuild =
 export default defineConfig({
   plugins: [
     react(),
+    tailwindcss(),
     ...(isLibraryBuild
       ? [
           dts({
@@ -28,7 +30,13 @@ export default defineConfig({
       formats: ['es'],
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime', 'lucide-react'],
+      external: [
+        'react',
+        'react-dom',
+        'react/jsx-runtime',
+        'lucide-react',
+        /^@radix-ui\//,
+      ],
       output: {
         assetFileNames: (assetInfo) => {
           if (assetInfo.name?.endsWith('.css')) return 'styles.css';
@@ -37,5 +45,10 @@ export default defineConfig({
       },
     },
     cssCodeSplit: false,
+  },
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src'),
+    },
   },
 });

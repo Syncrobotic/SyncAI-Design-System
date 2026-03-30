@@ -16,6 +16,7 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
+      "@/*": ["./src/*"],
       "@syncai/design-system": ["./src/index.ts"],
       "@syncai/design-system/*": ["./src/*"]
     }
