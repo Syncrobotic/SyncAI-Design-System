@@ -51,7 +51,7 @@ const meta = {
     layout: 'default' as const,
   },
   parameters: {
-    layout: 'padded',
+    layout: 'centered',
     backgrounds: {
       grid: {
         // Helps match design-system docs where spacing/alignment is verified via a grid overlay.

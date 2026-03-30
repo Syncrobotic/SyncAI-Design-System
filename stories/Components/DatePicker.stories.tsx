@@ -11,7 +11,7 @@ const meta = {
   },
   tags: ['autodocs'],
   parameters: {
-    layout: 'fullscreen',
+    layout: 'centered',
     docs: {
       description: {
         component: [
