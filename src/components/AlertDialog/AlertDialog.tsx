@@ -11,6 +11,7 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { cn } from '@/lib/utils';
+import type { ButtonVariant } from '@/components/Button';
 
 /** Figma `Type=Desktop` (9:8006) and `Type=Mobile` (9:7999). */
 export type AlertDialogLayout = 'desktop' | 'mobile';
@@ -19,6 +20,14 @@ export type AlertDialogAction = {
   label: string;
   onClick?: () => void;
   disabled?: boolean;
+  /**
+   * Button tone/variant for the underlying Cancel/Action button.
+   * - `tone` kept as an alias for backwards/UX symmetry.
+   */
+  variant?: ButtonVariant;
+  tone?: ButtonVariant;
+  iconLeft?: ReactNode;
+  iconRight?: ReactNode;
 };
 
 export type AlertDialogProps = {
@@ -47,6 +56,25 @@ export function AlertDialog({
   onOpenChange,
   trigger,
 }: AlertDialogProps) {
+  const renderActionInner = (action: AlertDialogAction) => (
+    <>
+      {action.iconLeft ? (
+        <span className="inline-flex size-[13.25px] shrink-0 items-center justify-center [&>svg]:size-[13.25px]">
+          {action.iconLeft}
+        </span>
+      ) : null}
+      <span>{action.label}</span>
+      {action.iconRight ? (
+        <span className="inline-flex size-[13.25px] shrink-0 items-center justify-center [&>svg]:size-[13.25px]">
+          {action.iconRight}
+        </span>
+      ) : null}
+    </>
+  );
+
+  const resolveActionVariant = (action: AlertDialogAction): ButtonVariant | undefined =>
+    action.variant ?? action.tone;
+
   return (
     <AlertDialogRoot open={open} onOpenChange={onOpenChange}>
       {trigger ? <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger> : null}
@@ -56,7 +84,9 @@ export function AlertDialog({
           className,
         )}
       >
-        <AlertDialogHeader>
+        <AlertDialogHeader
+          className={layout === 'mobile' ? 'sm:text-center items-center' : undefined}
+        >
           <AlertDialogTitle>{title}</AlertDialogTitle>
           {description != null && description !== '' && description !== false ? (
             <AlertDialogDescription>{description}</AlertDialogDescription>
@@ -64,39 +94,41 @@ export function AlertDialog({
         </AlertDialogHeader>
         <AlertDialogFooter
           className={cn(
-            layout === 'mobile'
-              ? 'flex-col'
-              : 'flex-row justify-end',
+            layout === 'mobile' ? 'flex-col sm:flex-col' : 'flex-row justify-end',
           )}
         >
           {layout === 'desktop' ? (
             <>
               <AlertDialogCancel
+                variant={resolveActionVariant(secondaryAction)}
                 onClick={secondaryAction.onClick}
                 disabled={secondaryAction.disabled}
               >
-                {secondaryAction.label}
+                {renderActionInner(secondaryAction)}
               </AlertDialogCancel>
               <AlertDialogAction
+                variant={resolveActionVariant(primaryAction)}
                 onClick={primaryAction.onClick}
                 disabled={primaryAction.disabled}
               >
-                {primaryAction.label}
+                {renderActionInner(primaryAction)}
               </AlertDialogAction>
             </>
           ) : (
             <>
               <AlertDialogAction
+                variant={resolveActionVariant(primaryAction)}
                 onClick={primaryAction.onClick}
                 disabled={primaryAction.disabled}
               >
-                {primaryAction.label}
+                {renderActionInner(primaryAction)}
               </AlertDialogAction>
               <AlertDialogCancel
+                variant={resolveActionVariant(secondaryAction)}
                 onClick={secondaryAction.onClick}
                 disabled={secondaryAction.disabled}
               >
-                {secondaryAction.label}
+                {renderActionInner(secondaryAction)}
               </AlertDialogCancel>
             </>
           )}

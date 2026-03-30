@@ -7,6 +7,20 @@ const AlertDialog = AlertDialogPrimitive.Root;
 const AlertDialogTrigger = AlertDialogPrimitive.Trigger;
 const AlertDialogPortal = AlertDialogPrimitive.Portal;
 
+type AlertDialogButtonVariant =
+  | 'primary'
+  | 'secondary'
+  | 'outline'
+  | 'ghost'
+  | 'ghostMuted'
+  | 'destructive'
+  | 'danger';
+
+function resolveButtonVariant(variant: AlertDialogButtonVariant | undefined, fallback: AlertDialogButtonVariant) {
+  const v = variant ?? fallback;
+  return v === 'danger' ? 'destructive' : v;
+}
+
 const AlertDialogOverlay = React.forwardRef<
   React.ComponentRef<typeof AlertDialogPrimitive.Overlay>,
   React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Overlay>
@@ -57,7 +71,7 @@ const AlertDialogFooter = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      'flex flex-col-reverse gap-2 sm:flex-row sm:justify-end',
+      'flex flex-col gap-2 sm:flex-row sm:justify-end',
       className,
     )}
     {...props}
@@ -92,11 +106,14 @@ AlertDialogDescription.displayName =
 
 const AlertDialogAction = React.forwardRef<
   React.ComponentRef<typeof AlertDialogPrimitive.Action>,
-  React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Action>
->(({ className, ...props }, ref) => (
+  React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Action> & { variant?: AlertDialogButtonVariant }
+>(({ className, variant, ...props }, ref) => (
   <AlertDialogPrimitive.Action
     ref={ref}
-    className={cn(buttonVariants({ variant: 'primary' }), className)}
+    className={cn(
+      buttonVariants({ variant: resolveButtonVariant(variant, 'primary') }),
+      className,
+    )}
     {...props}
   />
 ));
@@ -104,11 +121,14 @@ AlertDialogAction.displayName = AlertDialogPrimitive.Action.displayName;
 
 const AlertDialogCancel = React.forwardRef<
   React.ComponentRef<typeof AlertDialogPrimitive.Cancel>,
-  React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Cancel>
->(({ className, ...props }, ref) => (
+  React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Cancel> & { variant?: AlertDialogButtonVariant }
+>(({ className, variant, ...props }, ref) => (
   <AlertDialogPrimitive.Cancel
     ref={ref}
-    className={cn(buttonVariants({ variant: 'outline' }), className)}
+    className={cn(
+      buttonVariants({ variant: resolveButtonVariant(variant, 'outline') }),
+      className,
+    )}
     {...props}
   />
 ));
