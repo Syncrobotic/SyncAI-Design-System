@@ -1,5 +1,13 @@
-import { ChevronRight, Ellipsis } from 'lucide-react';
-import './Breadcrumb.css';
+import {
+  Breadcrumb as UiBreadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbEllipsis,
+} from '@/components/ui/breadcrumb';
+import { cn } from '@/lib/utils';
 
 export type BreadcrumbEntry =
   | { label: string; href: string }
@@ -13,53 +21,30 @@ export type BreadcrumbProps = {
   className?: string;
 };
 
-const iconProps = {
-  size: 16,
-  strokeWidth: 2,
-  'aria-hidden': true as const,
-  focusable: false as const,
-};
-
 export function Breadcrumb({ items, ariaLabel = 'Breadcrumb', className }: BreadcrumbProps) {
-  const rootClass = ['sds-breadcrumb', className].filter(Boolean).join(' ');
-
   return (
-    <nav className={rootClass} aria-label={ariaLabel} data-sds-component="Breadcrumb">
-      <ol className="sds-breadcrumb__list">
+    <UiBreadcrumb className={cn('min-h-9', className)} aria-label={ariaLabel} data-sds-component="Breadcrumb">
+      <BreadcrumbList className="text-[14px] leading-[21px] tracking-[0.07px]">
         {items.map((item, index) => (
-          <li key={index} className="sds-breadcrumb__segment">
-            {index > 0 ? (
-              <ChevronRight {...iconProps} className="sds-breadcrumb__chevron" />
-            ) : null}
+          <BreadcrumbItem key={index}>
+            {index > 0 ? <BreadcrumbSeparator /> : null}
             <BreadcrumbSegment item={item} />
-          </li>
+          </BreadcrumbItem>
         ))}
-      </ol>
-    </nav>
+      </BreadcrumbList>
+    </UiBreadcrumb>
   );
 }
 
 function BreadcrumbSegment({ item }: { item: BreadcrumbEntry }) {
   if ('ellipsis' in item && item.ellipsis) {
-    return (
-      <span className="sds-breadcrumb__ellipsis" title="Collapsed path" aria-label="Omitted intermediate segments">
-        <Ellipsis {...iconProps} />
-      </span>
-    );
+    return <BreadcrumbEllipsis />;
   }
   if ('href' in item) {
-    return (
-      <a className="sds-breadcrumb__link" href={item.href}>
-        {item.label}
-      </a>
-    );
+    return <BreadcrumbLink href={item.href}>{item.label}</BreadcrumbLink>;
   }
   if ('current' in item && item.current) {
-    return (
-      <span className="sds-breadcrumb__current" aria-current="page">
-        {item.label}
-      </span>
-    );
+    return <BreadcrumbPage>{item.label}</BreadcrumbPage>;
   }
   return null;
 }

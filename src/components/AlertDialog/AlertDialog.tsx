@@ -1,6 +1,16 @@
 import type { ReactNode } from 'react';
-import { useId } from 'react';
-import './AlertDialog.css';
+import {
+  AlertDialog as AlertDialogRoot,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+import { cn } from '@/lib/utils';
 
 /** Figma `Type=Desktop` (9:8006) and `Type=Mobile` (9:7999). */
 export type AlertDialogLayout = 'desktop' | 'mobile';
@@ -18,8 +28,12 @@ export type AlertDialogProps = {
   secondaryAction: AlertDialogAction;
   primaryAction: AlertDialogAction;
   className?: string;
-  /** When set to true, adds `aria-modal` (the outer scope should include an overlay and focus trap for a complete modal). */
-  modal?: boolean;
+  /** Controlled open state. */
+  open?: boolean;
+  /** Callback when open state changes. */
+  onOpenChange?: (open: boolean) => void;
+  /** Trigger element — if provided, clicking it opens the dialog. */
+  trigger?: ReactNode;
 };
 
 export function AlertDialog({
@@ -29,68 +43,65 @@ export function AlertDialog({
   secondaryAction,
   primaryAction,
   className,
-  modal = false,
+  open,
+  onOpenChange,
+  trigger,
 }: AlertDialogProps) {
-  const titleId = useId();
-  const descriptionId = useId();
-  const rootClass = ['sds-alert-dialog', `sds-alert-dialog--${layout}`, className].filter(Boolean).join(' ');
-
-  const secondaryBtn = (
-    <button
-      type="button"
-      className="sds-alert-dialog__btn sds-alert-dialog__btn--secondary"
-      onClick={secondaryAction.onClick}
-      disabled={secondaryAction.disabled}
-    >
-      {secondaryAction.label}
-    </button>
-  );
-
-  const primaryBtn = (
-    <button
-      type="button"
-      className="sds-alert-dialog__btn sds-alert-dialog__btn--primary"
-      onClick={primaryAction.onClick}
-      disabled={primaryAction.disabled}
-    >
-      {primaryAction.label}
-    </button>
-  );
-
   return (
-    <div
-      className={rootClass}
-      data-sds-component="AlertDialog"
-      role="alertdialog"
-      aria-modal={modal || undefined}
-      aria-labelledby={titleId}
-      aria-describedby={
-        description != null && description !== '' && description !== false ? descriptionId : undefined
-      }
-    >
-      <div className="sds-alert-dialog__stack">
-        <h2 className="sds-alert-dialog__title" id={titleId}>
-          {title}
-        </h2>
-        {description != null && description !== '' && description !== false ? (
-          <p className="sds-alert-dialog__description" id={descriptionId}>
-            {description}
-          </p>
-        ) : null}
-        <div className="sds-alert-dialog__actions">
+    <AlertDialogRoot open={open} onOpenChange={onOpenChange}>
+      {trigger ? <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger> : null}
+      <AlertDialogContent
+        className={cn(
+          layout === 'mobile' ? 'max-w-[320px]' : 'max-w-[480px]',
+          className,
+        )}
+      >
+        <AlertDialogHeader>
+          <AlertDialogTitle>{title}</AlertDialogTitle>
+          {description != null && description !== '' && description !== false ? (
+            <AlertDialogDescription>{description}</AlertDialogDescription>
+          ) : null}
+        </AlertDialogHeader>
+        <AlertDialogFooter
+          className={cn(
+            layout === 'mobile'
+              ? 'flex-col'
+              : 'flex-row justify-end',
+          )}
+        >
           {layout === 'desktop' ? (
             <>
-              {secondaryBtn}
-              {primaryBtn}
+              <AlertDialogCancel
+                onClick={secondaryAction.onClick}
+                disabled={secondaryAction.disabled}
+              >
+                {secondaryAction.label}
+              </AlertDialogCancel>
+              <AlertDialogAction
+                onClick={primaryAction.onClick}
+                disabled={primaryAction.disabled}
+              >
+                {primaryAction.label}
+              </AlertDialogAction>
             </>
           ) : (
             <>
-              {primaryBtn}
-              {secondaryBtn}
+              <AlertDialogAction
+                onClick={primaryAction.onClick}
+                disabled={primaryAction.disabled}
+              >
+                {primaryAction.label}
+              </AlertDialogAction>
+              <AlertDialogCancel
+                onClick={secondaryAction.onClick}
+                disabled={secondaryAction.disabled}
+              >
+                {secondaryAction.label}
+              </AlertDialogCancel>
             </>
           )}
-        </div>
-      </div>
-    </div>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialogRoot>
   );
 }

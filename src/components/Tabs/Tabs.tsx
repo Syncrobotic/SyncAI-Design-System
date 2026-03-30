@@ -1,7 +1,12 @@
 import type { ReactNode } from 'react';
+import {
+  Tabs as UiTabs,
+  TabsList,
+  TabsTrigger,
+} from '@/components/ui/tabs';
 import { Icon } from '../Icon';
 import type { OrbieIconName } from '../../icons/orbieIconMap';
-import './Tabs.css';
+import { cn } from '@/lib/utils';
 
 export type TabsItem = {
   id: string;
@@ -22,38 +27,34 @@ export type TabsProps = {
 
 export function Tabs({ items, value, onValueChange, className, ariaLabel = 'Tabs' }: TabsProps) {
   return (
-    <div role="tablist" aria-label={ariaLabel} className={['sds-tabs', className].filter(Boolean).join(' ')} data-sds-component="Tabs">
-      {items.map((item) => {
-        const active = item.id === value;
-        return (
-          <button
+    <UiTabs
+      value={value}
+      onValueChange={onValueChange}
+      className={cn(className)}
+      data-sds-component="Tabs"
+    >
+      <TabsList aria-label={ariaLabel}>
+        {items.map((item) => (
+          <TabsTrigger
             key={item.id}
-            type="button"
-            role="tab"
-            aria-selected={active}
+            value={item.id}
             disabled={item.disabled}
-            className={[
-              'sds-tabs__tab',
-              active && 'sds-tabs__tab--active',
-              item.disabled && 'sds-tabs__tab--disabled',
-            ]
-              .filter(Boolean)
-              .join(' ')}
-            onClick={() => {
-              if (!item.disabled) onValueChange(item.id);
-            }}
           >
             {item.icon ? (
-              <span className="sds-tabs__icon">
+              <span className="inline-flex">
                 <Icon name={item.icon} size={14} />
               </span>
             ) : null}
             {item.label != null ? item.label : null}
-            {item.counter != null ? <span className="sds-tabs__counter">{item.counter}</span> : null}
-          </button>
-        );
-      })}
-    </div>
+            {item.counter != null ? (
+              <span className="ml-1 inline-flex min-w-4 items-center justify-center rounded-[10px] bg-background/20 px-1 text-[11px] font-bold leading-4">
+                {item.counter}
+              </span>
+            ) : null}
+          </TabsTrigger>
+        ))}
+      </TabsList>
+    </UiTabs>
   );
 }
 

@@ -1,6 +1,6 @@
 import type { ReactElement, ReactNode } from 'react';
 import { cloneElement, isValidElement, useId } from 'react';
-import './Field.css';
+import { cn } from '@/lib/utils';
 
 export type FieldProps = {
   label: ReactNode;
@@ -28,7 +28,6 @@ export function Field({
   const errorId = error != null ? `${id}-error` : undefined;
 
   const describedBy = [descriptionId, errorId].filter(Boolean).join(' ') || undefined;
-  const wrapperClass = ['sds-field', className].filter(Boolean).join(' ');
 
   const enhancedChildren = isValidElement(children)
     ? cloneElement(children as ReactElement<any>, {
@@ -42,19 +41,22 @@ export function Field({
     : children;
 
   return (
-    <div className={wrapperClass} data-sds-component="Field">
-      <label className="sds-field__label" htmlFor={id}>
+    <div className={cn('flex flex-col gap-1', className)} data-sds-component="Field">
+      <label
+        className="text-[14px] font-medium leading-[21px] tracking-[0.07px] text-foreground"
+        htmlFor={id}
+      >
         {label}
         {required ? <span aria-hidden> *</span> : null}
       </label>
-      <div className="sds-field__control">{enhancedChildren}</div>
+      <div>{enhancedChildren}</div>
       {description != null ? (
-        <div className="sds-field__description" id={descriptionId}>
+        <div className="text-sm text-muted-foreground" id={descriptionId}>
           {description}
         </div>
       ) : null}
       {error != null ? (
-        <div className="sds-field__error" id={errorId}>
+        <div className="text-sm text-destructive" id={errorId}>
           {error}
         </div>
       ) : null}

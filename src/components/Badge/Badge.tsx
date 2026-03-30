@@ -1,5 +1,5 @@
 import type { HTMLAttributes, ReactNode } from 'react';
-import './Badge.css';
+import { cn } from '@/lib/utils';
 
 /** Figma Secondary-* palette on the Examples frame. */
 export type BadgeTone = 'blue' | 'yellow' | 'red' | 'green';
@@ -23,6 +23,13 @@ export type BadgeProps = {
   layout?: BadgeLayout;
 } & Omit<HTMLAttributes<HTMLSpanElement>, 'children'>;
 
+const toneClasses: Record<BadgeTone, string> = {
+  blue: 'bg-orbie-blue-bg text-orbie-blue',
+  yellow: 'bg-orbie-yellow-bg text-orbie-yellow',
+  red: 'bg-orbie-red-bg text-orbie-red',
+  green: 'bg-orbie-green-bg text-orbie-green',
+};
+
 export function Badge({
   children,
   icon,
@@ -32,21 +39,27 @@ export function Badge({
   className,
   ...rest
 }: BadgeProps) {
-  const classes = [
-    'sds-badge',
-    `sds-badge--${tone}`,
-    `sds-badge--${shape}`,
-    layout === 'numeric' && 'sds-badge--numeric',
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ');
-
   return (
-    <span className={classes} data-sds-component="Badge" {...rest}>
-      {icon ? <span className="sds-badge__icon" aria-hidden={!!children}>{icon}</span> : null}
+    <span
+      className={cn(
+        'inline-flex items-center gap-[6px] text-[12px] font-bold leading-[16px] tracking-[0.18px]',
+        toneClasses[tone],
+        shape === 'rounded' ? 'rounded-lg' : 'rounded-full',
+        layout === 'numeric'
+          ? 'min-h-4 min-w-4 justify-center rounded-[10px] px-1'
+          : 'min-h-6 px-2 py-[3px]',
+        className,
+      )}
+      data-sds-component="Badge"
+      {...rest}
+    >
+      {icon ? (
+        <span className="inline-flex size-[13px] shrink-0 items-center justify-center [&>svg]:size-[13px]" aria-hidden={!!children}>
+          {icon}
+        </span>
+      ) : null}
       {children != null && children !== false ? (
-        <span className="sds-badge__label">{children}</span>
+        <span>{children}</span>
       ) : null}
     </span>
   );

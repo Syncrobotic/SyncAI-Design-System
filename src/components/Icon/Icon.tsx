@@ -1,6 +1,6 @@
 import type { LucideProps } from 'lucide-react';
 import { orbieIconMap, type OrbieIconName } from '../../icons/orbieIconMap';
-import './Icon.css';
+import { cn } from '@/lib/utils';
 
 export type IconProps = {
   /** Orbie `icons` page slug (after `Icon / …`). */
@@ -11,6 +11,5 @@ export type IconProps = {
 
 export function Icon({ name, size = 24, className, strokeWidth = 2, ...rest }: IconProps) {
   const Cmp = orbieIconMap[name];
-  const classes = ['sds-icon', className].filter(Boolean).join(' ');
-  return <Cmp size={size} className={classes} strokeWidth={strokeWidth} aria-hidden focusable={false} {...rest} />;
+  return <Cmp size={size} className={cn(className)} strokeWidth={strokeWidth} aria-hidden focusable={false} {...rest} />;
 }

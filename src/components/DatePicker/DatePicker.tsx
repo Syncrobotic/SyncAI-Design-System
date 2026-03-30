@@ -7,7 +7,7 @@ import {
   startOfMonth,
   type CalendarCell,
 } from './calendarGrid';
-import './DatePicker.css';
+import { cn } from '@/lib/utils';
 
 const WEEKDAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'] as const;
 
@@ -38,26 +38,40 @@ export function DatePickerCalendar({
   const today = startOfDay(new Date());
 
   return (
-    <div className={['sds-date-picker__calendar', className].filter(Boolean).join(' ')}>
-      <div className="sds-date-picker__header">
-        <button type="button" className="sds-date-picker__nav" onClick={onPrevMonth} aria-label="Previous month">
-          <ChevronLeft strokeWidth={2} />
+    <div className={cn('flex flex-col gap-4', className)}>
+      <div className="flex items-center justify-between">
+        <button
+          type="button"
+          className="inline-flex size-8 items-center justify-center rounded-lg transition-colors hover:bg-accent"
+          onClick={onPrevMonth}
+          aria-label="Previous month"
+        >
+          <ChevronLeft className="size-4" strokeWidth={2} />
         </button>
-        <p className="sds-date-picker__title">{title}</p>
-        <button type="button" className="sds-date-picker__nav" onClick={onNextMonth} aria-label="Next month">
-          <ChevronRight strokeWidth={2} />
+        <p className="text-sm font-semibold">{title}</p>
+        <button
+          type="button"
+          className="inline-flex size-8 items-center justify-center rounded-lg transition-colors hover:bg-accent"
+          onClick={onNextMonth}
+          aria-label="Next month"
+        >
+          <ChevronRight className="size-4" strokeWidth={2} />
         </button>
       </div>
-      <div className="sds-date-picker__grid" role="grid" aria-label={title}>
-        <div className="sds-date-picker__row" role="row">
+      <div className="grid grid-cols-7" role="grid" aria-label={title}>
+        <div className="contents" role="row">
           {WEEKDAYS.map((wd) => (
-            <div key={wd} className="sds-date-picker__weekday" role="columnheader">
+            <div
+              key={wd}
+              className="flex size-[48px] items-center justify-center text-xs font-medium text-muted-foreground"
+              role="columnheader"
+            >
               {wd}
             </div>
           ))}
         </div>
         {Array.from({ length: 6 }, (_, row) => (
-          <div key={row} className="sds-date-picker__row" role="row">
+          <div key={row} className="contents" role="row">
             {grid.slice(row * 7, row * 7 + 7).map((cell, i) => (
               <DatePickerDayCell
                 key={`${cell.date.toISOString()}-${row}-${i}`}
@@ -88,25 +102,23 @@ function DatePickerDayCell({
   const d = startOfDay(cell.date);
   const isSel = selected != null && isSameDay(d, startOfDay(selected));
   const isTo = isSameDay(d, today);
-  const classes = [
-    'sds-date-picker__day',
-    !cell.inCurrentMonth && 'sds-date-picker__day--outside',
-    isSel && 'sds-date-picker__day--selected',
-    isTo && 'sds-date-picker__day--today',
-  ]
-    .filter(Boolean)
-    .join(' ');
 
   return (
     <button
       type="button"
       role="gridcell"
-      className={classes}
+      className={cn(
+        'flex size-[48px] items-center justify-center rounded text-sm transition-colors',
+        !cell.inCurrentMonth && 'text-muted-foreground opacity-50',
+        cell.inCurrentMonth && 'hover:bg-accent',
+        isSel && 'bg-primary text-primary-foreground hover:bg-primary',
+        isTo && !isSel && 'font-bold text-primary',
+      )}
       onClick={() => onSelect(d)}
       aria-selected={isSel}
       aria-current={isTo ? 'date' : undefined}
     >
-      <span className="sds-date-picker__day-inner">{d.getDate()}</span>
+      <span className="flex size-8 items-center justify-center">{d.getDate()}</span>
     </button>
   );
 }
@@ -168,15 +180,14 @@ export function DatePicker({
     setOpen(false);
   };
 
-  const triggerClasses = [
-    'sds-date-picker__trigger',
-    display == null && 'sds-date-picker__trigger--placeholder',
-  ]
-    .filter(Boolean)
-    .join(' ');
+  const triggerClasses = cn(
+    'inline-flex min-h-8 items-center gap-2 rounded-lg border border-input bg-transparent px-2 py-[5.5px] text-sm shadow-xs transition-colors hover:bg-accent',
+    display == null && 'text-muted-foreground',
+    disabled && 'cursor-not-allowed opacity-50',
+  );
 
   return (
-    <div ref={rootRef} className={['sds-date-picker', className].filter(Boolean).join(' ')} data-sds-component="DatePicker">
+    <div ref={rootRef} className={cn('relative', className)} data-sds-component="DatePicker">
       <button
         type="button"
         id={id}
@@ -186,14 +197,17 @@ export function DatePicker({
         aria-expanded={open}
         onClick={() => setOpen((o) => !o)}
       >
-        <span className="sds-date-picker__trigger-icon" aria-hidden>
-          <CalendarIcon strokeWidth={2} />
-        </span>
+        <CalendarIcon className="size-4" strokeWidth={2} aria-hidden />
         <span>{display ?? placeholder}</span>
       </button>
 
       {open ? (
-        <div className="sds-date-picker__popover" role="dialog" aria-modal="true" aria-label="Select date">
+        <div
+          className="absolute top-full z-50 mt-1 min-w-[342px] rounded-xl border border-border bg-popover p-4 shadow-lg"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Select date"
+        >
           <DatePickerCalendar
             month={viewMonth}
             selected={value}

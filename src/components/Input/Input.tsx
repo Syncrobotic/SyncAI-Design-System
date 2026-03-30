@@ -3,7 +3,7 @@ import type {
   ReactNode,
   TextareaHTMLAttributes,
 } from 'react';
-import './Input.css';
+import { cn } from '@/lib/utils';
 
 export type InputState = 'default' | 'error';
 
@@ -39,40 +39,41 @@ export function Input(props: InputProps) {
   const isError = state === 'error';
   const ariaInvalid = isError ? true : ariaInvalidProp;
 
-  const wrapperClass = [
-    'sds-input',
-    isError && 'sds-input--error',
-    disabled && 'sds-input--disabled',
-    as === 'textarea' && 'sds-input--textarea',
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ');
-
   return (
-    <div className={wrapperClass} data-sds-component="Input">
+    <div
+      className={cn(
+        'flex items-center gap-2 rounded-lg border bg-transparent shadow-xs transition-colors',
+        isError
+          ? 'border-destructive focus-within:ring-1 focus-within:ring-[var(--sds-input-ring-error)]'
+          : 'border-input focus-within:ring-1 focus-within:ring-ring',
+        disabled && 'cursor-not-allowed opacity-50',
+        as === 'textarea' && 'items-start',
+        className,
+      )}
+      data-sds-component="Input"
+    >
       {startAdornment ? (
-        <span className="sds-input__adornment" aria-hidden>
+        <span className="flex shrink-0 items-center pl-3 text-muted-foreground" aria-hidden>
           {startAdornment}
         </span>
       ) : null}
       {as === 'textarea' ? (
         <textarea
-          className="sds-input__native sds-input__native--textarea"
+          className="min-h-[60px] w-full flex-1 bg-transparent px-3 py-2 text-[14px] leading-[21px] tracking-[0.07px] placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed"
           disabled={disabled}
           aria-invalid={ariaInvalid}
           {...(rest as NativeTextareaProps)}
         />
       ) : (
         <input
-          className="sds-input__native"
+          className="min-h-9 w-full flex-1 bg-transparent px-3 py-[7.5px] text-[14px] leading-[21px] tracking-[0.07px] placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed"
           disabled={disabled}
           aria-invalid={ariaInvalid}
           {...(rest as NativeInputProps)}
         />
       )}
       {endAdornment ? (
-        <span className="sds-input__adornment" aria-hidden>
+        <span className="flex shrink-0 items-center pr-3 text-muted-foreground" aria-hidden>
           {endAdornment}
         </span>
       ) : null}

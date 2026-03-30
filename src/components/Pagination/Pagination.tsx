@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { ChevronLeft, ChevronRight, Ellipsis } from 'lucide-react';
-import './Pagination.css';
+import { cn } from '@/lib/utils';
 
 type PageToken = number | 'ellipsis';
 
@@ -13,7 +13,7 @@ function getPaginationTokens(opts: {
   const { page, pageCount, boundaryCount = 1, siblingCount = 1 } = opts;
   const clampedPage = Math.min(Math.max(page, 1), pageCount);
 
-  const minFull = boundaryCount * 2 + siblingCount * 2 + 3; // first, last, current window, plus 2 ellipses
+  const minFull = boundaryCount * 2 + siblingCount * 2 + 3;
   if (pageCount <= minFull) {
     return Array.from({ length: pageCount }, (_, i) => i + 1);
   }
@@ -41,7 +41,6 @@ function getPaginationTokens(opts: {
     tokens.push(pageCount);
   }
 
-  // Deduplicate while keeping order
   const seen = new Set<number>();
   const out: PageToken[] = [];
   for (const t of tokens) {
@@ -54,7 +53,6 @@ function getPaginationTokens(opts: {
       out.push(t);
     }
   }
-  // Ensure last exists
   if (!out.includes(pageCount)) out.push(pageCount);
   return out;
 }
@@ -83,19 +81,21 @@ function NavButton({
   label: string;
   onClick: () => void;
 }) {
-  const Icon = direction === 'prev' ? ChevronLeft : ChevronRight;
+  const IconCmp = direction === 'prev' ? ChevronLeft : ChevronRight;
   return (
     <button
       type="button"
-      className="sds-pagination__nav"
+      className={cn(
+        'inline-flex min-h-9 items-center gap-1 rounded-lg border border-[var(--sds-pagination-border)] px-4 py-[7.5px] text-sm font-semibold transition-colors',
+        'hover:bg-accent hover:text-accent-foreground',
+        'disabled:pointer-events-none disabled:opacity-50',
+      )}
       disabled={disabled}
       onClick={onClick}
-      aria-label={label}
+      aria-label={label || (direction === 'prev' ? 'Previous page' : 'Next page')}
     >
-      <Icon strokeWidth={2} />
-      {label ? (
-        <span style={{ fontSize: 'var(--sds-button-font-size)', fontWeight: 600 }}>{label}</span>
-      ) : null}
+      <IconCmp className="size-4" strokeWidth={2} />
+      {label ? <span>{label}</span> : null}
     </button>
   );
 }
@@ -123,7 +123,10 @@ export function Pagination({
   const navNextDisabled = safePage >= safePageCount;
 
   return (
-    <div className={['sds-pagination', className].filter(Boolean).join(' ')} data-sds-component="Pagination">
+    <div
+      className={cn('flex items-center gap-2', className)}
+      data-sds-component="Pagination"
+    >
       <NavButton
         disabled={navPrevDisabled}
         direction="prev"
@@ -134,8 +137,8 @@ export function Pagination({
       {tokens.map((t, idx) => {
         if (t === 'ellipsis') {
           return (
-            <span key={`e-${idx}`} className="sds-pagination__ellipsis" aria-hidden>
-              <Ellipsis strokeWidth={2} />
+            <span key={`e-${idx}`} className="flex size-9 items-center justify-center" aria-hidden>
+              <Ellipsis className="size-4" strokeWidth={2} />
             </span>
           );
         }
@@ -147,7 +150,12 @@ export function Pagination({
           <button
             key={t}
             type="button"
-            className={['sds-pagination__page', active && 'sds-pagination__page--active'].filter(Boolean).join(' ')}
+            className={cn(
+              'inline-flex size-9 items-center justify-center rounded-lg text-sm font-medium transition-colors',
+              active
+                ? 'bg-primary text-primary-foreground'
+                : 'hover:bg-accent hover:text-accent-foreground',
+            )}
             data-sds-page={t}
             aria-current={active ? 'page' : undefined}
             onClick={() => {

@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { Icon } from '../Icon';
 import type { OrbieIconName } from '../../icons/orbieIconMap';
-import './Sidebar.css';
+import { cn } from '@/lib/utils';
 
 export type SidebarItem = {
   id: string;
@@ -30,36 +30,47 @@ export type SidebarProps = {
 };
 
 export function Sidebar({ collapsed = false, groups, ariaLabel = 'Sidebar', className, onItemClick }: SidebarProps) {
-  const rootClass = ['sds-sidebar', collapsed ? 'sds-sidebar--collapsed' : 'sds-sidebar--expanded', className]
-    .filter(Boolean)
-    .join(' ');
-
   return (
-    <nav className={rootClass} aria-label={ariaLabel} data-sds-component="Sidebar">
+    <nav
+      className={cn(
+        'flex flex-col gap-4 bg-sidebar p-2',
+        collapsed ? 'w-14 items-center' : 'w-56',
+        className,
+      )}
+      aria-label={ariaLabel}
+      data-sds-component="Sidebar"
+    >
       {groups.map((g) => (
-        <div key={g.id} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-          {collapsed ? null : <div className="sds-sidebar__groupLabel">{g.label}</div>}
-          <div className="sds-sidebar__items">
+        <div key={g.id} className="flex flex-col gap-1.5">
+          {collapsed ? null : (
+            <div className="px-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              {g.label}
+            </div>
+          )}
+          <div className="flex flex-col gap-0.5">
             {g.items.map((item) => (
               <button
                 key={item.id}
                 type="button"
-                className={[
-                  'sds-sidebar-item',
-                  collapsed ? 'sds-sidebar-item--collapsed' : 'sds-sidebar-item--expanded',
-                  item.active ? 'sds-sidebar-item--active' : 'sds-sidebar-item--default',
-                ]
-                  .filter(Boolean)
-                  .join(' ')}
+                className={cn(
+                  'inline-flex items-center gap-2 rounded-lg px-2 py-1.5 text-sm font-medium transition-colors',
+                  'hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
+                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                  'disabled:pointer-events-none disabled:opacity-50',
+                  item.active && 'bg-sidebar-accent text-sidebar-accent-foreground',
+                  !item.active && 'text-sidebar-foreground',
+                  collapsed && 'justify-center px-0',
+                  item.level === 2 && !collapsed && 'pl-8',
+                )}
                 disabled={item.disabled}
                 onClick={() => onItemClick?.(item)}
               >
                 {item.icon ? (
-                  <Icon name={item.icon} size={20} className={collapsed ? '' : ''} />
+                  <Icon name={item.icon} size={20} />
                 ) : (
-                  <span style={{ width: 20, height: 20, display: 'inline-block' }} aria-hidden />
+                  <span className="inline-block size-5" aria-hidden />
                 )}
-                {!collapsed ? <span className="sds-sidebar-item__label">{item.label}</span> : null}
+                {!collapsed ? <span className="truncate">{item.label}</span> : null}
                 {item.badge && !collapsed ? item.badge : null}
               </button>
             ))}
