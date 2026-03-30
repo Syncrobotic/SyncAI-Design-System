@@ -62,19 +62,17 @@ const meta = {
     },
     docs: {
       description: {
-        component: `Orbie UI KIT — **Badge** examples frame. Design tokens are defined in \`src/tokens.css\` (Secondary-* colors, spacing, radii, paragraph mini bold).
-
-Usage:
-\`\`\`tsx
-import { Badge } from '@syncai/design-system';
-import '@syncai/design-system/styles.css';
-
-<Badge tone="blue" shape="rounded">
-  Healthy
-</Badge>;
-\`\`\`
-
-[Figma — Examples (node 9:7795)](${figmaExamples})`,
+        component: [
+          '## Imports',
+          '```tsx',
+          "import { Badge } from '@syncai/design-system';",
+          '```',
+          '## Usage',
+          'Badges give quick, scannable information — typically a single word or number.',
+          'Use `tone` for semantic color and `shape` for rounded or pill appearance.',
+          '',
+          `[Figma — Examples (node 9:7795)](${figmaExamples})`,
+        ].join('\n'),
       },
     },
   },

@@ -15,8 +15,15 @@ const meta = {
     layout: 'centered',
     docs: {
       description: {
-        component:
-          'Orbie Button page (Figma): Primary, Secondary (gray background), Outline, Ghost, Ghost Muted, Destructive; `danger` is the same as Destructive. Sizes: Regular / Small.',
+        component: [
+          '## Imports',
+          '```tsx',
+          "import { Button } from '@syncai/design-system';",
+          '```',
+          '## Usage',
+          'Triggers an action or event. Variants: **Primary**, **Secondary**, **Outline**, **Ghost**, **Ghost Muted**, **Destructive**.',
+          '`danger` is an alias for `destructive`. Sizes: `md` (default) / `sm`.',
+        ].join('\n'),
       },
     },
   },

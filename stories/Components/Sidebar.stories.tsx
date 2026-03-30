@@ -11,6 +11,18 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: [
+          '## Imports',
+          '```tsx',
+          "import { Sidebar } from '@syncai/design-system';",
+          '```',
+          '## Usage',
+          'A vertical navigation panel with grouped menu items and optional icon-only collapsed mode.',
+        ].join('\n'),
+      },
+    },
   },
 } satisfies Meta<typeof Sidebar>;
 

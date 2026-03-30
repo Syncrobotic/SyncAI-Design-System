@@ -13,6 +13,19 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: [
+          '## Imports',
+          '```tsx',
+          "import { Pagination } from '@syncai/design-system';",
+          '```',
+          '## Usage',
+          'Navigates between pages of content. Shows page numbers with ellipsis for large ranges.',
+          'Configure visible range with `boundaryCount` and `siblingCount`.',
+        ].join('\n'),
+      },
+    },
   },
 } satisfies Meta<typeof Pagination>;
 

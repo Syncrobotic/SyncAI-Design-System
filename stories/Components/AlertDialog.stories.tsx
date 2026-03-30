@@ -7,6 +7,19 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: [
+          '## Imports',
+          '```tsx',
+          "import { AlertDialog } from '@syncai/design-system';",
+          '```',
+          '## Usage',
+          'A modal dialog that interrupts the user with important content and expects a response.',
+          'Supports **desktop** (side-by-side actions) and **mobile** (stacked actions) layouts.',
+        ].join('\n'),
+      },
+    },
   },
   args: {
     title: 'Title',

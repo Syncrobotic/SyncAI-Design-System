@@ -10,6 +10,18 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: [
+          '## Imports',
+          '```tsx',
+          "import { Progress } from '@syncai/design-system';",
+          '```',
+          '## Usage',
+          'A horizontal bar indicating the completion progress of a task (0–100).',
+        ].join('\n'),
+      },
+    },
   },
 } satisfies Meta<typeof Progress>;
 

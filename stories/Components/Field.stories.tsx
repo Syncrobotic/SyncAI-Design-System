@@ -12,6 +12,19 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: [
+          '## Imports',
+          '```tsx',
+          "import { Field } from '@syncai/design-system';",
+          '```',
+          '## Usage',
+          'Wraps a form control with a label, optional description, and error message.',
+          'Automatically injects `id` and `aria-describedby` into its child input.',
+        ].join('\n'),
+      },
+    },
   },
 } satisfies Meta<typeof Field>;
 

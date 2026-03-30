@@ -12,6 +12,19 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
+    docs: {
+      description: {
+        component: [
+          '## Imports',
+          '```tsx',
+          "import { DatePicker, DatePickerCalendar } from '@syncai/design-system';",
+          '```',
+          '## Usage',
+          'An input with a popover calendar for selecting a single date.',
+          'Use `DatePickerCalendar` standalone for an inline calendar panel.',
+        ].join('\n'),
+      },
+    },
   },
 } satisfies Meta<typeof DatePicker>;
 

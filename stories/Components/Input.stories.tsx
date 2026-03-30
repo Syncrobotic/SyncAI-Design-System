@@ -10,6 +10,19 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: [
+          '## Imports',
+          '```tsx',
+          "import { Input } from '@syncai/design-system';",
+          '```',
+          '## Usage',
+          'A text input or textarea with optional start/end adornment slots.',
+          'Set `as="textarea"` for multi-line input. Use `state="error"` for validation feedback.',
+        ].join('\n'),
+      },
+    },
   },
 } satisfies Meta<typeof Input>;
 

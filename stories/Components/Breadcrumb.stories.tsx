@@ -7,6 +7,19 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: [
+          '## Imports',
+          '```tsx',
+          "import { Breadcrumb } from '@syncai/design-system';",
+          '```',
+          '## Usage',
+          'A navigation aid showing the current page location within a hierarchy.',
+          'Each entry can be a link (`href`), the current page (`current`), or an ellipsis.',
+        ].join('\n'),
+      },
+    },
   },
 } satisfies Meta<typeof Breadcrumb>;
 

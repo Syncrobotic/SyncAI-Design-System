@@ -11,6 +11,19 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: [
+          '## Imports',
+          '```tsx',
+          "import { Tooltip } from '@syncai/design-system';",
+          '```',
+          '## Usage',
+          'A popup that displays additional information when hovering or focusing on a trigger element.',
+          'Use `side` to control placement (top, bottom, left, right).',
+        ].join('\n'),
+      },
+    },
   },
 } satisfies Meta<typeof Tooltip>;
 

@@ -12,6 +12,18 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: [
+          '## Imports',
+          '```tsx',
+          "import { Switch } from '@syncai/design-system';",
+          '```',
+          '## Usage',
+          'A toggle control for switching between on and off states.',
+        ].join('\n'),
+      },
+    },
   },
 } satisfies Meta<typeof Switch>;
 
