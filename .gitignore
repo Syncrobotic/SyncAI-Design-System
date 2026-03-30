@@ -5,3 +5,7 @@ storybook-static
 .DS_Store
 .env
 .env.*
+
+# Editor / local tooling (do not commit)
+.cursor/
+.vscode/

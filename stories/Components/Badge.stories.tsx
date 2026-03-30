@@ -42,7 +42,6 @@ const rowStyle: CSSProperties = {
 };
 
 const meta = {
-  title: 'Components/Badge',
   component: Badge,
   tags: ['autodocs'],
   args: {
@@ -51,25 +50,29 @@ const meta = {
     shape: 'rounded' as const,
     layout: 'default' as const,
   },
-  argTypes: {
-    tone: {
-      control: 'inline-radio',
-      options: ['blue', 'yellow', 'red', 'green'],
-    },
-    shape: {
-      control: 'inline-radio',
-      options: ['rounded', 'pill'],
-    },
-    layout: {
-      control: 'inline-radio',
-      options: ['default', 'numeric'],
-    },
-  },
   parameters: {
-    layout: 'centered',
+    layout: 'padded',
+    backgrounds: {
+      grid: {
+        // Helps match design-system docs where spacing/alignment is verified via a grid overlay.
+        cellSize: 20,
+        opacity: 0.5,
+        cellAmount: 5,
+      },
+    },
     docs: {
       description: {
         component: `Orbie UI KIT — **Badge** examples frame. Design tokens are defined in \`src/tokens.css\` (Secondary-* colors, spacing, radii, paragraph mini bold).
+
+Usage:
+\`\`\`tsx
+import { Badge } from '@syncai/design-system';
+import '@syncai/design-system/styles.css';
+
+<Badge tone="blue" shape="rounded">
+  Healthy
+</Badge>;
+\`\`\`
 
 [Figma — Examples (node 9:7795)](${figmaExamples})`,
       },
@@ -82,6 +85,44 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
+  args: {
+    children: 'Healthy',
+    tone: 'blue',
+    shape: 'rounded',
+    layout: 'default',
+  },
+  render: (args) => <Badge {...args} icon={<IconSmile />} />,
+};
+
+export const ToneVariants: Story = {
+  args: {
+    // Text-only (icon omitted) so users can focus on tone semantics.
+    children: 'Degraded',
+    tone: 'yellow',
+    shape: 'rounded',
+    layout: 'default',
+  },
+};
+
+export const ShapePill: Story = {
+  args: {
+    children: '+12.5%',
+    tone: 'green',
+    shape: 'pill',
+    layout: 'default',
+  },
+};
+
+export const NumericDefault: Story = {
+  args: {
+    children: '23',
+    tone: 'red',
+    shape: 'rounded',
+    layout: 'numeric',
+  },
+};
+
+export const IconAndTextSingle: Story = {
   args: {
     children: 'Healthy',
     tone: 'blue',
@@ -118,10 +159,10 @@ export const TextOnly: Story = {
         Online
       </Badge>
       <Badge tone="red" shape="rounded">
-        系統
+        System
       </Badge>
       <Badge tone="blue" shape="rounded">
-        裝置
+        Device
       </Badge>
     </div>
   ),

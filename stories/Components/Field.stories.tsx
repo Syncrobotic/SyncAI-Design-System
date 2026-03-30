@@ -4,8 +4,11 @@ import { Field } from '../../src/components/Field';
 import { Input } from '../../src/components/Input';
 
 const meta = {
-  title: 'Components/Field',
   component: Field,
+  args: {
+    label: 'Name',
+    children: ' ',
+  },
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
@@ -14,7 +17,7 @@ const meta = {
 
 export default meta;
 
-type Story = StoryObj<any>;
+type Story = StoryObj<typeof meta>;
 
 export const WithDescription: Story = {
   render: () => (

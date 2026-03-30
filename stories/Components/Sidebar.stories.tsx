@@ -3,8 +3,11 @@ import { Sidebar } from '../../src/components/Sidebar';
 import type { SidebarProps } from '../../src/components/Sidebar';
 
 const meta = {
-  title: 'Components/Sidebar',
   component: Sidebar,
+  args: {
+    groups: [] as SidebarProps['groups'],
+    collapsed: false,
+  },
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
@@ -13,7 +16,7 @@ const meta = {
 
 export default meta;
 
-type Story = StoryObj<any>;
+type Story = StoryObj<typeof meta>;
 
 const baseGroups: SidebarProps['groups'] = [
   {

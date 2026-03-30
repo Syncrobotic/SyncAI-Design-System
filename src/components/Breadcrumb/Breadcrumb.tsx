@@ -8,7 +8,7 @@ export type BreadcrumbEntry =
 
 export type BreadcrumbProps = {
   items: BreadcrumbEntry[];
-  /** `nav` 的 `aria-label` */
+  /** `nav` aria-label */
   ariaLabel?: string;
   className?: string;
 };
@@ -20,7 +20,7 @@ const iconProps = {
   focusable: false as const,
 };
 
-export function Breadcrumb({ items, ariaLabel = '麵包屑', className }: BreadcrumbProps) {
+export function Breadcrumb({ items, ariaLabel = 'Breadcrumb', className }: BreadcrumbProps) {
   const rootClass = ['sds-breadcrumb', className].filter(Boolean).join(' ');
 
   return (
@@ -42,7 +42,7 @@ export function Breadcrumb({ items, ariaLabel = '麵包屑', className }: Breadc
 function BreadcrumbSegment({ item }: { item: BreadcrumbEntry }) {
   if ('ellipsis' in item && item.ellipsis) {
     return (
-      <span className="sds-breadcrumb__ellipsis" title="已摺疊的路徑" aria-label="已省略的中間階層">
+      <span className="sds-breadcrumb__ellipsis" title="Collapsed path" aria-label="Omitted intermediate segments">
         <Ellipsis {...iconProps} />
       </span>
     );

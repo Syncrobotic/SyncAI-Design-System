@@ -6,7 +6,6 @@ import { Icon } from '../../src/components/Icon';
 import { Input } from '../../src/components/Input';
 
 const meta = {
-  title: 'Components/Input',
   component: Input,
   tags: ['autodocs'],
   parameters: {

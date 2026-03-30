@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '../../src/components/Button';
 
 const meta = {
-  title: 'Components/Button',
   component: Button,
   tags: ['autodocs'],
   args: {
@@ -12,22 +11,12 @@ const meta = {
     size: 'md',
     disabled: false,
   },
-  argTypes: {
-    variant: {
-      control: 'select',
-      options: ['primary', 'secondary', 'outline', 'ghost', 'ghostMuted', 'destructive', 'danger'],
-    },
-    size: {
-      control: 'inline-radio',
-      options: ['sm', 'md'],
-    },
-  },
   parameters: {
     layout: 'centered',
     docs: {
       description: {
         component:
-          'Orbie Button 頁（Figma）：Primary、Secondary（灰底）、Outline、Ghost、Ghost Muted、Destructive；`danger` 同 Destructive。尺寸 Regular / Small。',
+          'Orbie Button page (Figma): Primary, Secondary (gray background), Outline, Ghost, Ghost Muted, Destructive; `danger` is the same as Destructive. Sizes: Regular / Small.',
       },
     },
   },

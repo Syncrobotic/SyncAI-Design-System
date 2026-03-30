@@ -3,8 +3,11 @@ import { Button } from '../../src/components/Button';
 import { Tooltip } from '../../src/components/Tooltip';
 
 const meta = {
-  title: 'Components/Tooltip',
   component: Tooltip,
+  args: {
+    content: 'Tooltip text',
+    children: 'Trigger',
+  },
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
@@ -13,7 +16,7 @@ const meta = {
 
 export default meta;
 
-type Story = StoryObj<any>;
+type Story = StoryObj<typeof meta>;
 
 export const Sides: Story = {
   render: () => (

@@ -4,12 +4,16 @@ import { useState } from 'react';
 import { DatePicker, DatePickerCalendar, startOfMonth } from '../../src/components/DatePicker';
 
 const meta = {
-  title: 'Components/DatePicker',
+  component: DatePicker,
+  args: {
+    value: null,
+    onChange: (_value: Date | null) => {},
+  },
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
   },
-} satisfies Meta;
+} satisfies Meta<typeof DatePicker>;
 
 export default meta;
 
@@ -29,7 +33,7 @@ export const WithValue: Story = {
   },
 };
 
-/** 僅月曆面板（Figma `Months=1 Month` / 9:6764） */
+/** Calendar-only panel (Figma `Months=1 Month` / 9:6764). */
 export const CalendarOnly: Story = {
   render: function Render() {
     const [month, setMonth] = useState(() => startOfMonth(new Date(2025, 4, 1)));

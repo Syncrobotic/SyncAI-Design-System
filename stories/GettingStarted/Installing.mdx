@@ -4,11 +4,11 @@ import { Meta } from '@storybook/blocks';
 
 # Installing the library
 
-函式庫以 **ESM** 建置，並產出 TypeScript 型別宣告。消費端需自行安裝 **React 18+**。
+The library is built as **ESM** and ships TypeScript type declarations. Consumers must install **React 18+** themselves.
 
-## 從 monorepo / 路徑安裝
+## Install from a monorepo / local path
 
-在應用程式 `package.json` 指向此套件（依你的套件管理策略調整）：
+Point your application `package.json` to this package (adjust based on your package manager strategy):
 
 ```json
 {
@@ -18,19 +18,19 @@ import { Meta } from '@storybook/blocks';
 }
 ```
 
-## 在應用程式中導入
+## Import in your application
 
 ```tsx
 import { Button } from '@syncai/design-system';
 import '@syncai/design-system/styles.css';
 ```
 
-樣式檔會帶入設計 **tokens** 與元件樣式；若你已有全域主題，可只導入元件並覆寫 CSS 變數。
+The style file brings in the design **tokens** and the component styles. If you already have a global theme, you can import only the components and override the CSS variables.
 
-## 建置函式庫
+## Build the library
 
 ```bash
 npm run build
 ```
 
-輸出於 `dist/`：`index.js`、`index.d.ts`、`styles.css`。
+Outputs into `dist/`: `index.js`, `index.d.ts`, `styles.css`.

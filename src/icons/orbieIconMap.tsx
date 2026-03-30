@@ -60,7 +60,7 @@ import {
 /**
  * Orbie UI KIT — `icons` page (Figma node `9:11137`).
  * Slugs match layer names after `Icon / …` (Lucide-aligned).
- * `gpu`: Figma 為 GPU；Lucide 無對應圖示，以 `Cpu` 近似。
+ * `gpu`: Figma has a GPU icon; Lucide doesn't have a matching icon, so we approximate it with `Cpu`.
  */
 export const orbieIconMap = {
   'arrow-down-to-line': ArrowDownToLine,

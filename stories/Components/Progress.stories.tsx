@@ -3,8 +3,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Progress } from '../../src/components/Progress';
 
 const meta = {
-  title: 'Components/Progress',
   component: Progress,
+  args: {
+    value: 0,
+  },
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
@@ -13,7 +15,7 @@ const meta = {
 
 export default meta;
 
-type Story = StoryObj<any>;
+type Story = StoryObj<typeof meta>;
 
 export const Determinate: Story = {
   render: () => {

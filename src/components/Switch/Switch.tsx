@@ -5,7 +5,7 @@ export type SwitchProps = {
   onCheckedChange: (checked: boolean) => void;
   disabled?: boolean;
   className?: string;
-  /** 用於 aria-label；若你外層有 <label>，可不填 */
+  /** Used for aria-label; if the outer scope already has a <label>, you can omit it. */
   ariaLabel?: string;
 };
 

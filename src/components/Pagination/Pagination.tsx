@@ -60,15 +60,15 @@ function getPaginationTokens(opts: {
 }
 
 export type PaginationProps = {
-  /** 目前頁（1-based） */
+  /** Current page (1-based). */
   page: number;
-  /** 總頁數 */
+  /** Total number of pages. */
   pageCount: number;
   onPageChange: (page: number) => void;
   className?: string;
   boundaryCount?: number;
   siblingCount?: number;
-  /** 是否顯示前後的標籤（Previous/Next） */
+  /** Whether to show the Previous/Next labels. */
   showNavLabel?: boolean;
 };
 
