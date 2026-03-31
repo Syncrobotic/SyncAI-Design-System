@@ -7,9 +7,19 @@ const config: StorybookConfig = {
     name: '@storybook/react-vite',
     options: {},
   },
+  viteFinal(config) {
+    config.optimizeDeps ??= {};
+    config.optimizeDeps.include ??= [];
+    config.optimizeDeps.include.push(
+      '@mdx-js/react',
+      '@storybook/blocks',
+    );
+    return config;
+  },
   docs: {
     autodocs: 'tag',
   },
+  disableWhatsNewNotifications: true,
 };
 
 export default config;
