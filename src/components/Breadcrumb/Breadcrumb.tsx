@@ -25,12 +25,18 @@ export function Breadcrumb({ items, ariaLabel = 'Breadcrumb', className }: Bread
   return (
     <UiBreadcrumb className={cn('min-h-9', className)} aria-label={ariaLabel} data-sds-component="Breadcrumb">
       <BreadcrumbList className="text-[14px] leading-[21px] tracking-[0.07px]">
-        {items.map((item, index) => (
-          <BreadcrumbItem key={index}>
-            {index > 0 ? <BreadcrumbSeparator /> : null}
-            <BreadcrumbSegment item={item} />
-          </BreadcrumbItem>
-        ))}
+        {items.map((item, index) => {
+          const segment = (
+            <BreadcrumbItem key={`item-${index}`}>
+              <BreadcrumbSegment item={item} />
+            </BreadcrumbItem>
+          );
+          if (index === 0) return segment;
+          return [
+            <BreadcrumbSeparator key={`sep-${index}`} />,
+            segment,
+          ];
+        })}
       </BreadcrumbList>
     </UiBreadcrumb>
   );
