@@ -1,14 +1,12 @@
-import { Meta } from '@storybook/blocks';
+import { Meta } from '@storybook/addon-docs/blocks';
 
 <Meta title="Getting Started/Installing the library" />
 
 # Installing the library
 
-The library is built as **ESM** and ships TypeScript type declarations. Consumers must install **React 18+** themselves.
+The library is built as ESM and ships TypeScript type declarations.
 
-## Install from a monorepo / local path
-
-Point your application `package.json` to this package (adjust based on your package manager strategy):
+## Install from a monorepo
 
 ```json
 {
@@ -22,15 +20,10 @@ Point your application `package.json` to this package (adjust based on your pack
 
 ```tsx
 import { Button } from '@syncai/design-system';
-import '@syncai/design-system/styles.css';
 ```
-
-The style file brings in the design **tokens** and the component styles. If you already have a global theme, you can import only the components and override the CSS variables.
 
 ## Build the library
 
 ```bash
 npm run build
 ```
-
-Outputs into `dist/`: `index.js`, `index.d.ts`, `styles.css`.

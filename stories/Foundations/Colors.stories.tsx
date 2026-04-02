@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from 'storybook/react';
 import { useLayoutEffect, useState } from 'react';
 
 const scales = [

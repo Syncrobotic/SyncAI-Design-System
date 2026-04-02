@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from 'storybook/react';
 
 import { Field } from '../../src/components/Field';
 import { Input } from '../../src/components/Input';

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from 'storybook/react';
 import { Icon } from '../../src/components/Icon';
 import { ORBIE_ICON_NAMES, ORBIE_UI_KIT_FIGMA_FILE } from '../../src/icons';
 
