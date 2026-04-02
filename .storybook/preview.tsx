@@ -1,6 +1,8 @@
 import type { Preview } from '@storybook/react';
+import { withThemeByDataAttribute } from '@storybook/addon-themes';
 
 import '../src/globals.css';
+import './preview.css';
 
 const preview: Preview = {
   parameters: {
@@ -20,37 +22,15 @@ const preview: Preview = {
       },
     },
   },
-  globalTypes: {
-    theme: {
-      name: 'Theme',
-      description: 'Docs surface',
-      defaultValue: 'light',
-      toolbar: {
-        icon: 'circlehollow',
-        items: [
-          { value: 'light', title: 'Light' },
-          { value: 'dark', title: 'Dark' },
-        ],
-        dynamicTitle: true,
-      },
-    },
-  },
   decorators: [
-    (Story, context) => {
-      const isDark = context.globals.theme === 'dark';
-      return (
-        <div
-          style={{
-            padding: '2rem',
-            minHeight: '100%',
-            background: isDark ? '#0f172a' : '#ffffff',
-            color: isDark ? '#f8fafc' : '#0f172a',
-          }}
-        >
-          <Story />
-        </div>
-      );
-    },
+    withThemeByDataAttribute({
+      themes: {
+        light: 'light',
+        dark: 'dark',
+      },
+      defaultTheme: 'light',
+      attributeName: 'data-theme',
+    }),
   ],
 };
 

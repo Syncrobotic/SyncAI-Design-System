@@ -1,0 +1,146 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+ * Storybook Manager Theme Styles
+ * 
+ * This CSS is injected into the Manager UI and responds to [data-theme] 
+ * attribute changes from the Preview iframe via postMessage.
+ * ───────────────────────────────────────────────────────────────────────────── */
+
+/* == CSS Variables for Light Theme (default) == */
+:root {
+  --sds-manager-bg: #f8fafc;
+  --sds-manager-content-bg: #ffffff;
+  --sds-manager-border: #e2e8f0;
+  --sds-manager-text: #1e293b;
+  --sds-manager-text-muted: #64748b;
+  --sds-manager-bar-bg: #ffffff;
+  --sds-manager-bar-text: #334155;
+  --sds-manager-primary: #0047c7;
+  --sds-manager-hover-bg: #f1f5f9;
+  --sds-manager-selected-bg: #e5edf9;
+}
+
+/* == CSS Variables for Dark Theme == */
+:root.sds-dark {
+  --sds-manager-bg: #0f172a;
+  --sds-manager-content-bg: #1e293b;
+  --sds-manager-border: #334155;
+  --sds-manager-text: #f1f5f9;
+  --sds-manager-text-muted: #94a3b8;
+  --sds-manager-bar-bg: #1e293b;
+  --sds-manager-bar-text: #94a3b8;
+  --sds-manager-primary: #739ae0;
+  --sds-manager-hover-bg: #334155;
+  --sds-manager-selected-bg: #1e3a5f;
+}
+
+/* == Sidebar == */
+.os-viewport,
+[id*="storybook"][id*="panel"],
+nav[class*="sidebar"] {
+  background-color: var(--sds-manager-bg) !important;
+}
+
+/* Sidebar items */
+.sidebar-container,
+[class*="sidebar-item"],
+button[id*="explorer"],
+a[id*="explorer"] {
+  color: var(--sds-manager-text) !important;
+}
+
+/* Sidebar item hover */
+button[id*="explorer"]:hover,
+a[id*="explorer"]:hover,
+[class*="sidebar-item"]:hover {
+  background-color: var(--sds-manager-hover-bg) !important;
+}
+
+/* Sidebar selected item */
+button[id*="explorer"][data-selected="true"],
+a[id*="explorer"][data-selected="true"],
+[class*="sidebar-item"][data-selected="true"] {
+  background-color: var(--sds-manager-selected-bg) !important;
+  color: var(--sds-manager-primary) !important;
+}
+
+/* Sidebar headings */
+[class*="sidebar"] [class*="heading"],
+[class*="sidebar"] span,
+[class*="sidebar"] button {
+  color: var(--sds-manager-text) !important;
+}
+
+/* == Top bar / Toolbar == */
+[class*="bar"],
+header {
+  background-color: var(--sds-manager-bar-bg) !important;
+  border-color: var(--sds-manager-border) !important;
+}
+
+/* Toolbar buttons */
+button[class*="IconButton"],
+[class*="toolbar"] button,
+[class*="bar"] button {
+  color: var(--sds-manager-bar-text) !important;
+}
+
+button[class*="IconButton"]:hover,
+[class*="toolbar"] button:hover,
+[class*="bar"] button:hover {
+  color: var(--sds-manager-primary) !important;
+}
+
+/* == Tooltips == */
+[class*="TooltipMessage"],
+[data-radix-popper-content-wrapper] > div,
+[class*="tooltip"] {
+  background-color: var(--sds-manager-content-bg) !important;
+  color: var(--sds-manager-text) !important;
+  border-color: var(--sds-manager-border) !important;
+}
+
+/* == Search / Filter == */
+input[type="search"],
+input[type="text"],
+[class*="searchinput"] {
+  background-color: var(--sds-manager-content-bg) !important;
+  color: var(--sds-manager-text) !important;
+  border-color: var(--sds-manager-border) !important;
+}
+
+input::placeholder {
+  color: var(--sds-manager-text-muted) !important;
+}
+
+/* == Panel tabs == */
+[class*="tabbutton"],
+[role="tablist"] button {
+  color: var(--sds-manager-text-muted) !important;
+}
+
+[class*="tabbutton"][aria-selected="true"],
+[role="tablist"] button[aria-selected="true"] {
+  color: var(--sds-manager-primary) !important;
+  border-color: var(--sds-manager-primary) !important;
+}
+
+/* == Panels (Controls, Actions, etc.) == */
+[class*="panel"],
+[class*="tabcontent"] {
+  background-color: var(--sds-manager-content-bg) !important;
+  color: var(--sds-manager-text) !important;
+}
+
+/* == Scrollbar styling for dark mode == */
+:root.sds-dark ::-webkit-scrollbar-track {
+  background: var(--sds-manager-bg);
+}
+
+:root.sds-dark ::-webkit-scrollbar-thumb {
+  background: var(--sds-manager-border);
+}
+
+/* == Transition for smooth switching == */
+* {
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}

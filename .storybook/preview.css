@@ -1,0 +1,245 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+ * Storybook Preview Theme Styles (CSS-only, no React re-renders)
+ * Controls the entire Docs page appearance based on [data-theme] attribute
+ * ───────────────────────────────────────────────────────────────────────────── */
+
+/* == Light theme (default) == */
+:root,
+:root[data-theme='light'] {
+  /* Storybook UI */
+  --sb-background: #ffffff;
+  --sb-foreground: #1e293b;
+  --sb-muted: #64748b;
+  --sb-border: #e2e8f0;
+  --sb-code-bg: #f1f5f9;
+
+  /* Design System semantic colors */
+  --color-background: #ffffff;
+  --color-foreground: #515353;
+  --color-card: #ffffff;
+  --color-card-foreground: #515353;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #515353;
+  --color-primary: #0047c7;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #eeeeee;
+  --color-secondary-foreground: #515353;
+  --color-muted: #f6f6f6;
+  --color-muted-foreground: #7d7e7e;
+  --color-accent: #e5edf9;
+  --color-accent-foreground: #0047c7;
+  --color-destructive: #ff6f63;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #b5b6b6;
+  --color-input: #e2e8f0;
+  --color-ring: #4075d5;
+  --color-ghost-muted-foreground: #334155;
+
+  /* Badge tones */
+  --color-orbie-blue: #4a90e2;
+  --color-orbie-blue-bg: #edf4fc;
+  --color-orbie-yellow: #f0bf60;
+  --color-orbie-yellow-bg: #fef9ef;
+  --color-orbie-red: #ff6f63;
+  --color-orbie-red-bg: #fff1ef;
+  --color-orbie-green: #5cb85c;
+  --color-orbie-green-bg: #eff8ef;
+
+  /* Sidebar */
+  --color-sidebar: #f6f6f6;
+  --color-sidebar-foreground: #515353;
+  --color-sidebar-accent: #e5edf9;
+  --color-sidebar-accent-foreground: #0047c7;
+  --color-sidebar-border: #dadada;
+
+  /* Component tokens */
+  --sds-input-border-default: #e2e8f0;
+  --sds-input-border-focus: #94a3b8;
+  --sds-input-ring-focus: #cbd5e1;
+  --sds-input-text: #515353;
+  --sds-input-placeholder: #7d7e7e;
+  --sds-button-ghost-muted-fg: #334155;
+  --sds-pagination-nav-fg: #334155;
+  --sds-pagination-border: #cbd5e1;
+  --sds-progress-track: #cbd5e1;
+  --sds-progress-fill: #4a90e2;
+}
+
+/* == Dark theme == */
+:root[data-theme='dark'] {
+  /* Storybook UI */
+  --sb-background: #0f172a;
+  --sb-foreground: #f1f5f9;
+  --sb-muted: #94a3b8;
+  --sb-border: #334155;
+  --sb-code-bg: #1e293b;
+
+  /* Design System semantic colors */
+  --color-background: #0f172a;
+  --color-foreground: #f1f5f9;
+  --color-card: #1e293b;
+  --color-card-foreground: #f1f5f9;
+  --color-popover: #1e293b;
+  --color-popover-foreground: #f1f5f9;
+  --color-primary: #739ae0;
+  --color-primary-foreground: #0f172a;
+  --color-secondary: #334155;
+  --color-secondary-foreground: #f1f5f9;
+  --color-muted: #1e293b;
+  --color-muted-foreground: #94a3b8;
+  --color-accent: #1e3a5f;
+  --color-accent-foreground: #a6bfeb;
+  --color-destructive: #ff938a;
+  --color-destructive-foreground: #1e293b;
+  --color-border: #334155;
+  --color-input: #334155;
+  --color-ring: #739ae0;
+  --color-ghost-muted-foreground: #94a3b8;
+
+  /* Badge tones — vibrant bg with dark text for contrast */
+  --color-orbie-blue: #1e3a5f;
+  --color-orbie-blue-bg: #9bc2ef;
+  --color-orbie-yellow: #78540a;
+  --color-orbie-yellow-bg: #f7dca8;
+  --color-orbie-red: #7f0f05;
+  --color-orbie-red-bg: #ffb0a9;
+  --color-orbie-green: #1a4a1a;
+  --color-orbie-green-bg: #a5d8a5;
+
+  /* Sidebar */
+  --color-sidebar: #1e293b;
+  --color-sidebar-foreground: #f1f5f9;
+  --color-sidebar-accent: #1e3a5f;
+  --color-sidebar-accent-foreground: #a6bfeb;
+  --color-sidebar-border: #334155;
+
+  /* Component tokens */
+  --sds-input-border-default: #334155;
+  --sds-input-border-focus: #64748b;
+  --sds-input-ring-focus: #475569;
+  --sds-input-text: #f1f5f9;
+  --sds-input-placeholder: #64748b;
+  --sds-button-ghost-muted-fg: #94a3b8;
+  --sds-pagination-nav-fg: #94a3b8;
+  --sds-pagination-border: #334155;
+  --sds-progress-track: #334155;
+  --sds-progress-fill: #77ace9;
+}
+
+/* == Apply to Storybook iframe body == */
+body {
+  background-color: var(--sb-background) !important;
+  color: var(--sb-foreground) !important;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* == Docs page container == */
+.sbdocs.sbdocs-wrapper {
+  background-color: var(--sb-background) !important;
+}
+
+.sbdocs.sbdocs-content {
+  background-color: var(--sb-background) !important;
+  color: var(--sb-foreground) !important;
+}
+
+/* == Docs headings == */
+.sbdocs h1,
+.sbdocs h2,
+.sbdocs h3,
+.sbdocs h4,
+.sbdocs h5,
+.sbdocs h6 {
+  color: var(--sb-foreground) !important;
+}
+
+/* == Docs paragraphs and text == */
+.sbdocs p,
+.sbdocs li,
+.sbdocs span {
+  color: var(--sb-foreground) !important;
+}
+
+/* == Docs links == */
+.sbdocs a {
+  color: var(--color-primary, #0047c7) !important;
+}
+
+/* == Code blocks == */
+.sbdocs pre,
+.sbdocs code {
+  background-color: var(--sb-code-bg) !important;
+  color: var(--sb-foreground) !important;
+}
+
+/* == Docs table == */
+.sbdocs table {
+  border-color: var(--sb-border) !important;
+}
+
+.sbdocs th,
+.sbdocs td {
+  border-color: var(--sb-border) !important;
+  color: var(--sb-foreground) !important;
+}
+
+.sbdocs th {
+  background-color: var(--sb-code-bg) !important;
+}
+
+/* == Args table (Controls) == */
+.docblock-argstable {
+  background-color: var(--sb-background) !important;
+}
+
+.docblock-argstable th,
+.docblock-argstable td {
+  background-color: var(--sb-background) !important;
+  border-color: var(--sb-border) !important;
+  color: var(--sb-foreground) !important;
+}
+
+/* == Story preview wrapper == */
+.sds-storybook-preview {
+  padding: 2rem;
+  min-height: 100%;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* == Canvas story container == */
+.sb-show-main {
+  background-color: var(--sb-background) !important;
+  transition: background-color 0.2s ease;
+}
+
+/* == Smooth theme transition for all elements == */
+*,
+*::before,
+*::after {
+  transition: 
+    background-color 0.15s ease-out,
+    border-color 0.15s ease-out,
+    color 0.15s ease-out,
+    fill 0.15s ease-out,
+    stroke 0.15s ease-out,
+    box-shadow 0.15s ease-out !important;
+}
+
+/* == Fade-in animation to mask re-mount flicker == */
+@keyframes sds-fade-in {
+  from {
+    opacity: 0.85;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Story container fade-in */
+#storybook-root > *,
+.docs-story > * {
+  animation: sds-fade-in 0.1s ease-out;
+}
