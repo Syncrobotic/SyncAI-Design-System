@@ -54,6 +54,9 @@
   --color-sidebar-accent-foreground: var(--orbie-primary-violet-100);
   --color-sidebar-border: var(--orbie-variant-10);
 
+  /* ── Component semantic colors ── */
+  --color-ghost-muted-foreground: var(--sds-button-ghost-muted-fg);
+
   /* ── Radius ── */
   --radius-sm: 4px;
   --radius-md: 6px;
