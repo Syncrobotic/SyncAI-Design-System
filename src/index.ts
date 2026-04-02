@@ -89,6 +89,17 @@ export {
 } from './components/Badge';
 export { Icon, type IconProps } from './components/Icon';
 export {
+  ThemeProvider,
+  createTheme,
+  useTheme,
+  type SdsTheme,
+  type SdsThemeColors,
+  type SdsThemeRadius,
+  type SdsThemeFontFamily,
+  type ThemeProviderProps,
+} from './components/ThemeProvider';
+export { lightTheme, darkTheme } from './themes';
+export {
   ORBIE_FIGMA_NODE_COLORS_BOARD,
   ORBIE_FIGMA_NODE_ICONS_PAGE,
   ORBIE_ICON_NAMES,
