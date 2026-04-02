@@ -6,6 +6,9 @@ storybook-static
 .env
 .env.*
 
+# Vite temporary files
+vite.config.ts.timestamp-*
+
 # Editor / local tooling (do not commit)
 .cursor/
 .vscode/
