@@ -90,15 +90,42 @@ export {
 export { Icon, type IconProps } from './components/Icon';
 export {
   ThemeProvider,
+  ThemeContext,
   createTheme,
+  resolveTheme,
   useTheme,
+  augmentColor,
+  lighten,
+  darken,
+  getContrastText,
+  contrastRatio,
+  luminance,
   type SdsTheme,
+  type SdsThemeInput,
+  type SdsThemePalette,
+  type SdsPaletteColor,
+  type SdsThemeTypography,
+  type SdsTypographyVariant,
+  type SdsThemeShape,
+  type SdsThemeBreakpoints,
+  type SdsThemeTransitions,
+  type SdsThemeZIndex,
+  type SdsComponentTokens,
+  type SdsColorScheme,
+  type SdsColorSchemes,
+  type AugmentColorOptions,
   type SdsThemeColors,
   type SdsThemeRadius,
   type SdsThemeFontFamily,
   type ThemeProviderProps,
 } from './components/ThemeProvider';
-export { lightTheme, darkTheme } from './themes';
+
+export {
+  lightTheme,
+  lightThemeInput,
+  darkTheme,
+  darkThemeInput,
+} from './themes';
 export {
   ORBIE_FIGMA_NODE_COLORS_BOARD,
   ORBIE_FIGMA_NODE_ICONS_PAGE,
