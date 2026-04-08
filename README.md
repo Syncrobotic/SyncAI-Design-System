@@ -4,18 +4,31 @@ A React component library and documentation site powered by [Storybook](https://
 
 ---
 
+## Tech stack
+
+| Layer | Technology |
+|-------|------------|
+| UI framework | [React](https://react.dev/) 18 |
+| Component primitives | [shadcn/ui](https://ui.shadcn.com/) (New York style) + [Radix UI](https://www.radix-ui.com/) |
+| Styling | [Tailwind CSS](https://tailwindcss.com/) 4 · design tokens in `src/tokens.css` |
+| Build tool | [Vite](https://vite.dev/) 6 · library output via `vite-plugin-dts` |
+| Documentation | [Storybook](https://storybook.js.org/) 10 (`@storybook/react-vite`) |
+| AI integration | [`@storybook/addon-mcp`](https://storybook.js.org/addons/@storybook/addon-mcp) (Model Context Protocol) |
+
+---
+
 ## Requirements
 
 | Requirement | Version / notes |
-|-------------|-----------------|
-| [Node.js](https://nodejs.org/) | **18.x or later** (LTS recommended) |
-| Package manager | **npm** (this repository includes `package-lock.json` for reproducible installs). If you use pnpm or Yarn, translate the commands accordingly. |
+|-------------|------------------|
+| [Node.js](https://nodejs.org/) | **20.19 +** or **22.12 +** (required by Storybook 10) |
+| Package manager | [**pnpm**](https://pnpm.io/) (this repository includes `pnpm-lock.yaml` for reproducible installs) |
 
 Verify your environment:
 
 ```bash
-node -v   # expect v18.x or higher
-npm -v
+node -v   # expect v20.19+ or v22.12+
+pnpm -v
 ```
 
 ---
@@ -24,11 +37,11 @@ npm -v
 
 ```bash
 git clone <repository-url>
-cd SyncAI-Design-System
-npm install
+cd SyncAI-Frontend-Lib-DesignSystem
+pnpm install
 ```
 
-`npm install` resolves dependencies from `package-lock.json`, which helps keep dependency versions aligned across machines and CI.
+`pnpm install` resolves dependencies from `pnpm-lock.yaml`, which helps keep dependency versions aligned across machines and CI.
 
 ---
 
@@ -37,7 +50,7 @@ npm install
 Run Storybook for interactive development and documentation (default port **6006**):
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 Open <http://localhost:6006> in your browser.
@@ -51,7 +64,7 @@ Open <http://localhost:6006> in your browser.
 Produces the publishable package consumed by applications:
 
 ```bash
-npm run build
+pnpm build
 ```
 
 Artifacts:
@@ -67,7 +80,7 @@ Artifacts:
 Generates a static documentation site suitable for hosting (e.g. GitHub Pages, object storage, or an internal static host):
 
 ```bash
-npm run build-storybook
+pnpm build-storybook
 ```
 
 Preview locally with any static file server, for example:
@@ -86,10 +99,10 @@ Then open <http://localhost:5050>.
 
 | Command | Purpose |
 |---------|---------|
-| `npm run dev` | Start Storybook in development mode |
-| `npm run build` | Build the library to `dist/` |
-| `npm run build-storybook` | Build static documentation to `storybook-static/` |
-| `npm run typecheck` | Run the TypeScript compiler in check-only mode (no emit) |
+| `pnpm dev` | Start Storybook in development mode |
+| `pnpm build` | Build the library to `dist/` |
+| `pnpm build-storybook` | Build static documentation to `storybook-static/` |
+| `pnpm typecheck` | Run the TypeScript compiler in check-only mode (no emit) |
 
 ---
 
@@ -97,7 +110,7 @@ Then open <http://localhost:5050>.
 
 | Issue | Recommendation |
 |-------|----------------|
-| `npm install` fails | Confirm Node ≥ 18. Remove `node_modules` and run `npm install` again. |
+| `pnpm install` fails | Confirm Node ≥ 20.19 (or ≥ 22.12). Remove `node_modules` and run `pnpm install` again. |
 | Port 6006 in use | Free the port or change the `-p` value in the `dev` script in `package.json`. |
 | Build errors after dependency changes | Prefer the locked versions in this repo; avoid upgrading major versions without validation. |
 
@@ -105,7 +118,7 @@ Then open <http://localhost:5050>.
 
 ## Consuming the package
 
-After installing `@syncai/design-system` via your workspace, `npm link`, or a private registry:
+After installing `@syncai/design-system` via your workspace, `pnpm link`, or a private registry:
 
 ```tsx
 import { Button } from '@syncai/design-system';
@@ -113,3 +126,60 @@ import '@syncai/design-system/styles.css';
 ```
 
 Adjust the package name and import paths to match your distribution setup.
+
+---
+
+## AI Integration (MCP)
+
+This project includes [`@storybook/addon-mcp`](https://storybook.js.org/addons/@storybook/addon-mcp), which exposes component documentation through the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/). AI agents (e.g. GitHub Copilot, Cursor) can query component props, variants, and usage examples directly from a running Storybook instance.
+
+### Prerequisites
+
+- Storybook dev server must be running (`pnpm dev` → `http://localhost:6006`)
+
+### MCP endpoint
+
+Once Storybook is running, the MCP server is available at:
+
+```
+http://localhost:6006/mcp
+```
+
+### VS Code configuration
+
+Add the following entry to your **workspace** `.vscode/mcp.json` (create the file if it doesn't exist). Note that `.vscode/` is gitignored, so each developer adds this locally:
+
+```jsonc
+{
+  "servers": {
+    "syncai-design-system": {
+      "type": "http",
+      "url": "http://localhost:6006/mcp"
+    }
+  }
+}
+```
+
+Alternatively, run:
+
+```bash
+npx mcp-add --type http --url "http://localhost:6006/mcp" --scope project
+```
+
+### Available MCP tools
+
+| Tool | Description |
+|------|-------------|
+| `list-all-documentation` | List all documented components, foundations, and docs pages |
+| `get-documentation` | Get full props, usage examples, and stories for a component by ID |
+| `get-documentation-for-story` | Get additional docs from a specific story variant |
+| `get-storybook-story-instructions` | Get framework-specific story-writing conventions |
+| `preview-stories` | Preview stories after changes |
+
+### Quick test
+
+After starting Storybook, open VS Code Copilot Chat and ask:
+
+> List all documented components in the design system.
+
+The agent will use the MCP tools to retrieve component information from Storybook.
