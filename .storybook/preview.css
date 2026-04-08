@@ -180,6 +180,16 @@
   --sds-pagination-border: #616161;
   --sds-progress-track: #424242;
   --sds-progress-fill: #90caf9;
+
+  /* SDS semantic aliases — used by inline styles in Stories */
+  --sds-color-bg: #121212;
+  --sds-color-fg: #ffffff;
+  --sds-color-muted: #b0b0b0;
+  --sds-color-border: #333333;
+  --sds-color-primary: #90caf9;
+  --sds-color-primary-fg: #121212;
+  --sds-color-danger: #f44336;
+  --sds-color-danger-fg: #121212;
 }
 
 /* == Apply to Storybook iframe body == */

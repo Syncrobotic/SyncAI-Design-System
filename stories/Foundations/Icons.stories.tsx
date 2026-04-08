@@ -4,7 +4,13 @@ import { ORBIE_ICON_NAMES, ORBIE_UI_KIT_FIGMA_FILE } from '../../src/icons';
 
 function IconsGrid() {
   return (
-    <div style={{ fontFamily: 'var(--sds-font-sans)', padding: 16 }}>
+    <div style={{
+      fontFamily: 'var(--sds-font-sans)',
+      padding: 16,
+      backgroundColor: 'var(--color-background)',
+      color: 'var(--color-foreground)',
+      minHeight: '100%',
+    }}>
       <p style={{ color: 'var(--sds-color-muted)', marginBottom: 16, maxWidth: 640 }}>
         Source: Figma <code>icons</code> page (node <code>9:11137</code>). Components use{' '}
         <code>lucide-react</code> to match the same slugs; <code>gpu</code> has no matching Lucide icon, so we use{' '}

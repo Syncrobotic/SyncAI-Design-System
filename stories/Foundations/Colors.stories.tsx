@@ -41,7 +41,13 @@ function ColorsTable() {
   const hexByVar = useOrbieHexGrid();
 
   return (
-    <div style={{ fontFamily: 'var(--sds-font-sans)', padding: 16 }}>
+    <div style={{
+      fontFamily: 'var(--sds-font-sans)',
+      padding: 16,
+      backgroundColor: 'var(--color-background)',
+      color: 'var(--color-foreground)',
+      minHeight: '100%',
+    }}>
       <p style={{ color: 'var(--sds-color-muted)', marginBottom: 16, maxWidth: 560 }}>
         Source: Figma Orbie UI KIT — <code>colors</code> (node <code>9:11646</code>). Synchronized into{' '}
         <code>tokens.css</code> as <code>--orbie-*</code> variables.
