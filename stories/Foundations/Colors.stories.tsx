@@ -1,5 +1,24 @@
 import type { Meta, StoryObj } from 'storybook/react';
-import { useLayoutEffect, useState } from 'react';
+
+/**
+ * Static Orbie palette — always shows the canonical design-token colours
+ * regardless of light/dark theme.  Source: tokens.css / Figma node 9:11646.
+ */
+const ORBIE_PALETTE: Record<string, Record<string, string>> = {
+  '--orbie-primary-violet':   { '100': '#0047C7', '75': '#4075D5', '55': '#739AE0', '35': '#A6BFEB', '10': '#E5EDF9' },
+  '--orbie-primary-gray':     { '100': '#515353', '75': '#7D7E7E', '55': '#9FA0A0', '35': '#C2C3C3', '10': '#EEEEEE' },
+  '--orbie-secondary-violet': { '100': '#6D63B5', '75': '#918AC7', '55': '#AFA9D6', '35': '#CCC8E5', '10': '#F0EFF8' },
+  '--orbie-secondary-yellow': { '100': '#F0BF60', '75': '#F4CF88', '55': '#F7DCA8', '35': '#FAE9C8', '10': '#FEF9EF' },
+  '--orbie-secondary-green':  { '100': '#5CB85C', '75': '#85CA85', '55': '#A5D8A5', '35': '#C6E6C6', '10': '#EFF8EF' },
+  '--orbie-secondary-blue':   { '100': '#4A90E2', '75': '#77ACE9', '55': '#9BC2EF', '35': '#C0D8F5', '10': '#EDF4FC' },
+  '--orbie-secondary-red':    { '100': '#FF6F63', '75': '#FF938A', '55': '#FFB0A9', '35': '#FFCDC8', '10': '#FFF1EF' },
+  '--orbie-variant':          { '100': '#333535', '75': '#717272', '55': '#929393', '35': '#B5B6B6', '10': '#DADADA' },
+};
+
+const ORBIE_BG = {
+  surface: '#FFFFFF',
+  muted:   '#F6F6F6',
+};
 
 const scales = [
   { label: 'Primary-Violet', prefix: '--orbie-primary-violet' },
@@ -14,31 +33,7 @@ const scales = [
 
 const steps = ['100', '75', '55', '35', '10'] as const;
 
-function readCssVarHex(varName: string): string {
-  if (typeof document === 'undefined') return '';
-  return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
-}
-
-/** Read tokens from :root to avoid duplicating hex values between Story and tokens.css. */
-function useOrbieHexGrid(): Record<string, string> | null {
-  const [map, setMap] = useState<Record<string, string> | null>(null);
-  useLayoutEffect(() => {
-    const next: Record<string, string> = {};
-    for (const row of scales) {
-      for (const s of steps) {
-        const key = `${row.prefix}-${s}`;
-        next[key] = readCssVarHex(key);
-      }
-    }
-    next['--orbie-bg-surface'] = readCssVarHex('--orbie-bg-surface');
-    next['--orbie-bg-muted'] = readCssVarHex('--orbie-bg-muted');
-    setMap(next);
-  }, []);
-  return map;
-}
-
 function ColorsTable() {
-  const hexByVar = useOrbieHexGrid();
 
   return (
     <div style={{
@@ -86,8 +81,7 @@ function ColorsTable() {
               </td>
               {steps.map((s) => {
                 const varName = `${row.prefix}-${s}`;
-                const v = `var(${varName})`;
-                const hex = hexByVar?.[varName] ?? '…';
+                const hex = ORBIE_PALETTE[row.prefix]?.[s] ?? '';
                 return (
                   <td
                     key={s}
@@ -104,8 +98,8 @@ function ColorsTable() {
                           width: 72,
                           height: 44,
                           borderRadius: 6,
-                          background: v,
-                          border: '1px solid var(--orbie-variant-10)',
+                          background: hex,
+                          border: '1px solid var(--sds-color-border)',
                         }}
                       />
                       <code
@@ -143,12 +137,12 @@ function ColorsTable() {
               width: 48,
               height: 36,
               borderRadius: 6,
-              background: 'var(--orbie-bg-surface)',
+              background: ORBIE_BG.surface,
               border: '1px solid var(--sds-color-border)',
             }}
           />
           <span>
-            surface — <code>{(hexByVar?.['--orbie-bg-surface'] ?? '…').toUpperCase()}</code> —{' '}
+            surface — <code>{ORBIE_BG.surface}</code> —{' '}
             <code style={{ fontSize: 11 }}>--orbie-bg-surface</code>
           </span>
         </div>
@@ -166,12 +160,12 @@ function ColorsTable() {
               width: 48,
               height: 36,
               borderRadius: 6,
-              background: 'var(--orbie-bg-muted)',
+              background: ORBIE_BG.muted,
               border: '1px solid var(--sds-color-border)',
             }}
           />
           <span>
-            muted — <code>{(hexByVar?.['--orbie-bg-muted'] ?? '…').toUpperCase()}</code> —{' '}
+            muted — <code>{ORBIE_BG.muted}</code> —{' '}
             <code style={{ fontSize: 11 }}>--orbie-bg-muted</code>
           </span>
         </div>
