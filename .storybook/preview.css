@@ -355,6 +355,46 @@ table[class*="args"] span {
   color: var(--sb-foreground) !important;
 }
 
+/* == Controls table input fields — dark mode fix == */
+:root[data-theme='dark'] .docblock-argstable input,
+:root[data-theme='dark'] .docblock-argstable select,
+:root[data-theme='dark'] .docblock-argstable textarea,
+:root[data-theme='dark'] [class*="argstable"] input,
+:root[data-theme='dark'] [class*="argstable"] select,
+:root[data-theme='dark'] [class*="argstable"] textarea,
+:root[data-theme='dark'] table[class*="args"] input,
+:root[data-theme='dark'] table[class*="args"] select,
+:root[data-theme='dark'] table[class*="args"] textarea {
+  background-color: var(--sb-code-bg) !important;
+  color: var(--sb-foreground) !important;
+  border-color: var(--sb-border) !important;
+}
+
+:root[data-theme='dark'] .docblock-argstable button,
+:root[data-theme='dark'] [class*="argstable"] button,
+:root[data-theme='dark'] table[class*="args"] button {
+  background-color: var(--sb-code-bg) !important;
+  color: var(--sb-foreground) !important;
+  border-color: var(--sb-border) !important;
+}
+
+/* Controls — placeholder text visibility in dark mode */
+:root[data-theme='dark'] .docblock-argstable input::placeholder,
+:root[data-theme='dark'] .docblock-argstable textarea::placeholder,
+:root[data-theme='dark'] [class*="argstable"] input::placeholder,
+:root[data-theme='dark'] [class*="argstable"] textarea::placeholder,
+:root[data-theme='dark'] table[class*="args"] input::placeholder,
+:root[data-theme='dark'] table[class*="args"] textarea::placeholder {
+  color: var(--sb-muted) !important;
+  opacity: 1 !important;
+}
+
+/* Controls — Boolean toggle, color picker, range slider labels */
+:root[data-theme='dark'] .docblock-argstable label,
+:root[data-theme='dark'] [class*="argstable"] label {
+  color: var(--sb-foreground) !important;
+}
+
 /* == Story preview wrapper == */
 .sds-storybook-preview {
   padding: 2rem;

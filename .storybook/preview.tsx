@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { Preview } from '@storybook/react-vite';
 import { DocsContainer } from '@storybook/addon-docs/blocks';
 import { addons } from 'storybook/internal/preview-api';
+import { create } from 'storybook/theming/create';
 
 import '../src/globals.css';
 import './preview.css';
@@ -38,24 +39,68 @@ try {
   /* channel not ready yet — ThemedDocsContainer will handle it */
 }
 
+/* ── Storybook Docs themes (controls inputs, tables, etc.) ── */
+const docsLightTheme = create({
+  base: 'light',
+  colorPrimary: '#1976d2',
+  colorSecondary: '#1976d2',
+  appBg: '#ffffff',
+  appContentBg: '#ffffff',
+  appBorderColor: '#e0e0e0',
+  textColor: '#212121',
+  textMutedColor: '#757575',
+  inputBg: '#ffffff',
+  inputBorder: '#e0e0e0',
+  inputTextColor: '#212121',
+  inputBorderRadius: 6,
+});
+
+const docsDarkTheme = create({
+  base: 'dark',
+  colorPrimary: '#90caf9',
+  colorSecondary: '#90caf9',
+  appBg: '#121212',
+  appContentBg: '#121212',
+  appBorderColor: '#333333',
+  textColor: '#ffffff',
+  textMutedColor: '#b0b0b0',
+  inputBg: '#1e1e1e',
+  inputBorder: '#333333',
+  inputTextColor: '#ffffff',
+  inputBorderRadius: 6,
+});
+
 /* ── ThemedDocsContainer ──
  * For Docs pages: syncs data-theme on mount and listens for changes.
+ * Passes Storybook theme to DocsContainer so Controls inputs get styled.
  */
 const ThemedDocsContainer: React.FC<
   React.ComponentProps<typeof DocsContainer>
 > = (props) => {
+  const [theme, setTheme] = useState<'light' | 'dark'>(
+    () => getStoredTheme() as 'light' | 'dark',
+  );
+
   useEffect(() => {
     applyThemeAttribute(getStoredTheme());
 
     const channel = addons.getChannel();
-    const onThemeChanged = (theme: string) => applyThemeAttribute(theme);
+    const onThemeChanged = (t: string) => {
+      applyThemeAttribute(t);
+      setTheme(t === 'dark' ? 'dark' : 'light');
+    };
     channel.on(SDS_THEME_CHANGED, onThemeChanged);
     return () => {
       channel.off(SDS_THEME_CHANGED, onThemeChanged);
     };
   }, []);
 
-  return <DocsContainer {...props} />;
+  return (
+    <DocsContainer
+      {...props}
+      theme={theme === 'dark' ? docsDarkTheme : docsLightTheme}
+    />
+  );
 };
 
 /* ── Preview config ──
