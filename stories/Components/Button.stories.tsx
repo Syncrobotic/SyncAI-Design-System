@@ -5,11 +5,14 @@ import { Button } from '../../src/components/Button';
 const meta = {
   component: Button,
   tags: ['autodocs'],
-  args: {
-    children: 'Button',
-    variant: 'primary',
-    size: 'md',
-    disabled: false,
+  argTypes: {
+    children: { control: 'text', description: 'Button label text.' },
+    variant: {
+      control: 'inline-radio',
+      options: ['primary', 'secondary', 'outline', 'ghost', 'ghostMuted', 'destructive', 'danger'],
+    },
+    size: { control: 'inline-radio', options: ['md', 'sm'] },
+    disabled: { control: 'boolean' },
   },
   parameters: {
     layout: 'centered',
@@ -33,36 +36,38 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {};
+export const Primary: Story = {
+  render: () => <Button variant="primary">Button</Button>,
+};
 
 export const Secondary: Story = {
-  args: { variant: 'secondary', children: 'Secondary' },
+  render: () => <Button variant="secondary">Secondary</Button>,
 };
 
 export const Outline: Story = {
-  args: { variant: 'outline', children: 'Outline' },
+  render: () => <Button variant="outline">Outline</Button>,
 };
 
 export const Ghost: Story = {
-  args: { variant: 'ghost', children: 'Ghost' },
+  render: () => <Button variant="ghost">Ghost</Button>,
 };
 
 export const GhostMuted: Story = {
-  args: { variant: 'ghostMuted', children: 'Ghost muted' },
+  render: () => <Button variant="ghostMuted">Ghost muted</Button>,
 };
 
 export const Destructive: Story = {
-  args: { variant: 'destructive', children: 'Delete' },
+  render: () => <Button variant="destructive">Delete</Button>,
 };
 
 export const Danger: Story = {
-  args: { variant: 'danger', children: 'Delete (alias)' },
+  render: () => <Button variant="danger">Delete (alias)</Button>,
 };
 
 export const Small: Story = {
-  args: { size: 'sm', children: 'Small' },
+  render: () => <Button size="sm">Small</Button>,
 };
 
 export const Disabled: Story = {
-  args: { disabled: true },
+  render: () => <Button disabled>Button</Button>,
 };

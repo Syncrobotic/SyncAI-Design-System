@@ -44,11 +44,11 @@ const rowStyle: CSSProperties = {
 const meta = {
   component: Badge,
   tags: ['autodocs'],
-  args: {
-    children: 'Healthy',
-    tone: 'blue' as const,
-    shape: 'rounded' as const,
-    layout: 'default' as const,
+  argTypes: {
+    children: { control: 'text', description: 'Label text; omit for icon-only when `icon` is set.' },
+    tone: { control: 'inline-radio', options: ['blue', 'yellow', 'red', 'green'] },
+    shape: { control: 'inline-radio', options: ['rounded', 'pill'] },
+    layout: { control: 'inline-radio', options: ['default', 'numeric'] },
   },
   parameters: {
     layout: 'centered',
@@ -83,51 +83,43 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
-  args: {
-    children: 'Healthy',
-    tone: 'blue',
-    shape: 'rounded',
-    layout: 'default',
-  },
-  render: (args) => <Badge {...args} icon={<IconSmile />} />,
+  render: () => (
+    <Badge tone="blue" shape="rounded" layout="default" icon={<IconSmile />}>
+      Healthy
+    </Badge>
+  ),
 };
 
 export const ToneVariants: Story = {
-  args: {
-    // Text-only (icon omitted) so users can focus on tone semantics.
-    children: 'Degraded',
-    tone: 'yellow',
-    shape: 'rounded',
-    layout: 'default',
-  },
+  render: () => (
+    <Badge tone="yellow" shape="rounded" layout="default">
+      Degraded
+    </Badge>
+  ),
 };
 
 export const ShapePill: Story = {
-  args: {
-    children: '+12.5%',
-    tone: 'green',
-    shape: 'pill',
-    layout: 'default',
-  },
+  render: () => (
+    <Badge tone="green" shape="pill" layout="default">
+      +12.5%
+    </Badge>
+  ),
 };
 
 export const NumericDefault: Story = {
-  args: {
-    children: '23',
-    tone: 'red',
-    shape: 'rounded',
-    layout: 'numeric',
-  },
+  render: () => (
+    <Badge tone="red" shape="rounded" layout="numeric">
+      23
+    </Badge>
+  ),
 };
 
 export const IconAndTextSingle: Story = {
-  args: {
-    children: 'Healthy',
-    tone: 'blue',
-    shape: 'rounded',
-    layout: 'default',
-  },
-  render: (args) => <Badge {...args} icon={<IconSmile />} />,
+  render: () => (
+    <Badge tone="blue" shape="rounded" layout="default" icon={<IconSmile />}>
+      Healthy
+    </Badge>
+  ),
 };
 
 /** Icon + text — rounded rectangles (semantic/rounded-lg). */
