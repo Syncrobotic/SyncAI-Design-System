@@ -261,6 +261,25 @@ body {
   color: var(--sb-foreground) !important;
 }
 
+/* Inline code / type badges inside Args table (e.g. "AlertDialogAction") */
+.docblock-argstable code,
+.docblock-argstable span[class*="Type"],
+.docblock-argstable td span,
+.docblock-argstable td code {
+  background-color: var(--sb-code-bg) !important;
+  color: var(--sb-foreground) !important;
+}
+
+/* Storybook uses deeply nested spans for type labels — ensure contrast */
+[class*="argstable"] code,
+[class*="ArgType"] code,
+[class*="ArgType"] span,
+table[class*="args"] code,
+table[class*="args"] span {
+  background-color: var(--sb-code-bg) !important;
+  color: var(--sb-foreground) !important;
+}
+
 /* == Story preview wrapper == */
 .sds-storybook-preview {
   padding: 2rem;
