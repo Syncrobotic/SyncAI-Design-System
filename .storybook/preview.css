@@ -308,6 +308,16 @@ table[class*="args"] span {
   transition: background-color var(--sds-theme-transition);
 }
 
+/* == Docs-mode story canvas — force dark background into iframe containers == */
+.docs-story,
+.docs-story > div,
+.docs-story > div > div,
+#storybook-root,
+[id^="story--"] {
+  background-color: var(--sb-background) !important;
+  transition: background-color var(--sds-theme-transition);
+}
+
 /* == Smooth theme transition for all elements (MUI easing.easeInOut) == */
 *,
 *::before,
