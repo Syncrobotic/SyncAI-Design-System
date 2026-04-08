@@ -1,146 +1,208 @@
 /* ─────────────────────────────────────────────────────────────────────────────
- * Storybook Preview Theme Styles (CSS-only, no React re-renders)
- * Controls the entire Docs page appearance based on [data-theme] attribute
+ * Storybook Preview Theme Styles — MUI-aligned palette
+ * Controls the entire Docs page appearance based on [data-theme] attribute.
+ *
+ * Color references:
+ *   Light — https://mui.com/material-ui/customization/default-theme/ (mode: light)
+ *   Dark  — https://mui.com/material-ui/customization/dark-mode/
  * ───────────────────────────────────────────────────────────────────────────── */
+
+/* == Shared transition timing (MUI transitions.duration.standard = 225ms) == */
+:root {
+  --sds-theme-transition: 225ms cubic-bezier(0.4, 0, 0.2, 1);
+}
 
 /* == Light theme (default) == */
 :root,
 :root[data-theme='light'] {
+  color-scheme: light;
+
   /* Storybook UI */
   --sb-background: #ffffff;
-  --sb-foreground: #1e293b;
-  --sb-muted: #64748b;
-  --sb-border: #e2e8f0;
-  --sb-code-bg: #f1f5f9;
+  --sb-foreground: #212121;          /* MUI text.primary  rgba(0,0,0,0.87) */
+  --sb-muted: #757575;              /* MUI text.secondary rgba(0,0,0,0.6) */
+  --sb-border: #e0e0e0;             /* MUI divider        rgba(0,0,0,0.12) */
+  --sb-code-bg: #f5f5f5;            /* MUI grey[100] */
 
-  /* Design System semantic colors */
-  --color-background: #ffffff;
-  --color-foreground: #515353;
-  --color-card: #ffffff;
-  --color-card-foreground: #515353;
+  /* Design System semantic colors — MUI light palette */
+  --color-background: #ffffff;                /* MUI background.default */
+  --color-foreground: #212121;                /* MUI text.primary */
+  --color-card: #ffffff;                      /* MUI background.paper */
+  --color-card-foreground: #212121;
   --color-popover: #ffffff;
-  --color-popover-foreground: #515353;
-  --color-primary: #0047c7;
+  --color-popover-foreground: #212121;
+  --color-primary: #1976d2;                   /* MUI primary.main */
   --color-primary-foreground: #ffffff;
-  --color-secondary: #eeeeee;
-  --color-secondary-foreground: #515353;
-  --color-muted: #f6f6f6;
-  --color-muted-foreground: #7d7e7e;
-  --color-accent: #e5edf9;
-  --color-accent-foreground: #0047c7;
-  --color-destructive: #ff6f63;
+  --color-secondary: #f5f5f5;                 /* MUI grey[100] */
+  --color-secondary-foreground: #212121;
+  --color-muted: #fafafa;                     /* MUI grey[50] */
+  --color-muted-foreground: #757575;          /* MUI text.secondary */
+  --color-accent: #e3f2fd;                    /* MUI blue[50] */
+  --color-accent-foreground: #1976d2;
+  --color-destructive: #d32f2f;               /* MUI error.main */
   --color-destructive-foreground: #ffffff;
-  --color-border: #b5b6b6;
-  --color-input: #e2e8f0;
-  --color-ring: #4075d5;
-  --color-ghost-muted-foreground: #334155;
+  --color-border: #e0e0e0;                    /* MUI divider */
+  --color-input: #e0e0e0;
+  --color-ring: #1976d2;
+  --color-ghost-muted-foreground: #424242;    /* MUI grey[800] */
 
-  /* Badge tones */
-  --color-orbie-blue: #4a90e2;
-  --color-orbie-blue-bg: #edf4fc;
-  --color-orbie-yellow: #f0bf60;
-  --color-orbie-yellow-bg: #fef9ef;
-  --color-orbie-red: #ff6f63;
-  --color-orbie-red-bg: #fff1ef;
-  --color-orbie-green: #5cb85c;
-  --color-orbie-green-bg: #eff8ef;
+  /* Badge tones — MUI semantic status colours */
+  --color-orbie-blue: #0288d1;               /* MUI info.main */
+  --color-orbie-blue-bg: #e1f5fe;            /* MUI lightBlue[50] */
+  --color-orbie-yellow: #ed6c02;             /* MUI warning.main */
+  --color-orbie-yellow-bg: #fff3e0;          /* MUI orange[50] */
+  --color-orbie-red: #d32f2f;                /* MUI error.main */
+  --color-orbie-red-bg: #ffebee;             /* MUI red[50] */
+  --color-orbie-green: #2e7d32;              /* MUI success.main */
+  --color-orbie-green-bg: #e8f5e9;           /* MUI green[50] */
 
   /* Sidebar */
-  --color-sidebar: #f6f6f6;
-  --color-sidebar-foreground: #515353;
-  --color-sidebar-accent: #e5edf9;
-  --color-sidebar-accent-foreground: #0047c7;
-  --color-sidebar-border: #dadada;
+  --color-sidebar: #fafafa;                  /* MUI grey[50] */
+  --color-sidebar-foreground: #212121;
+  --color-sidebar-accent: #e3f2fd;
+  --color-sidebar-accent-foreground: #1976d2;
+  --color-sidebar-border: #e0e0e0;
 
   /* Component tokens */
-  --sds-input-border-default: #e2e8f0;
-  --sds-input-border-focus: #94a3b8;
-  --sds-input-ring-focus: #cbd5e1;
-  --sds-input-text: #515353;
-  --sds-input-placeholder: #7d7e7e;
-  --sds-button-ghost-muted-fg: #334155;
-  --sds-pagination-nav-fg: #334155;
-  --sds-pagination-border: #cbd5e1;
-  --sds-progress-track: #cbd5e1;
-  --sds-progress-fill: #4a90e2;
+  --sds-input-border-default: #bdbdbd;       /* MUI grey[400] */
+  --sds-input-border-focus: #1976d2;
+  --sds-input-ring-focus: #90caf9;           /* MUI blue[200] */
+  --sds-input-text: #212121;
+  --sds-input-placeholder: #9e9e9e;          /* MUI grey[500] */
+  --sds-button-ghost-muted-fg: #424242;
+  --sds-pagination-nav-fg: #424242;
+  --sds-pagination-border: #bdbdbd;
+  --sds-progress-track: #e0e0e0;
+  --sds-progress-fill: #1976d2;
 }
 
-/* == Dark theme == */
+/* == Dark theme — MUI dark palette == */
 :root[data-theme='dark'] {
+  color-scheme: dark;
+
   /* Storybook UI */
-  --sb-background: #0f172a;
-  --sb-foreground: #f1f5f9;
-  --sb-muted: #94a3b8;
-  --sb-border: #334155;
-  --sb-code-bg: #1e293b;
+  --sb-background: #121212;          /* MUI dark background.default */
+  --sb-foreground: #ffffff;          /* MUI dark text.primary */
+  --sb-muted: #b0b0b0;              /* MUI dark text.secondary rgba(255,255,255,0.7) */
+  --sb-border: #333333;             /* MUI dark divider rgba(255,255,255,0.12) */
+  --sb-code-bg: #1e1e1e;            /* MUI dark paper elevation 1 */
 
-  /* Design System semantic colors */
-  --color-background: #0f172a;
-  --color-foreground: #f1f5f9;
-  --color-card: #1e293b;
-  --color-card-foreground: #f1f5f9;
-  --color-popover: #1e293b;
-  --color-popover-foreground: #f1f5f9;
-  --color-primary: #739ae0;
-  --color-primary-foreground: #0f172a;
-  --color-secondary: #334155;
-  --color-secondary-foreground: #f1f5f9;
-  --color-muted: #1e293b;
-  --color-muted-foreground: #94a3b8;
-  --color-accent: #1e3a5f;
-  --color-accent-foreground: #a6bfeb;
-  --color-destructive: #ff938a;
-  --color-destructive-foreground: #1e293b;
-  --color-border: #334155;
-  --color-input: #334155;
-  --color-ring: #739ae0;
-  --color-ghost-muted-foreground: #94a3b8;
+  /*
+   * Orbie base tokens — dark overrides.
+   * @theme inline in globals.css inlines var(--orbie-*) into Tailwind utils,
+   * so we MUST override these tokens directly for dark mode to take effect.
+   */
+  --orbie-bg-surface: #121212;                /* MUI dark background.default */
+  --orbie-bg-muted: #1e1e1e;                 /* MUI dark background.paper */
+  --orbie-primary-violet-100: #90caf9;        /* MUI dark primary.main */
+  --orbie-primary-violet-75: #42a5f5;         /* MUI blue[400] */
+  --orbie-primary-violet-55: #64b5f6;         /* MUI blue[300] */
+  --orbie-primary-violet-35: #90caf9;         /* MUI blue[200] */
+  --orbie-primary-violet-10: #1a237e;         /* MUI indigo[900] */
+  --orbie-primary-gray-100: #ffffff;          /* MUI dark text.primary */
+  --orbie-primary-gray-75: #b0b0b0;          /* MUI dark text.secondary */
+  --orbie-primary-gray-55: #757575;           /* MUI grey[600] */
+  --orbie-primary-gray-35: #616161;           /* MUI grey[700] */
+  --orbie-primary-gray-10: #424242;           /* MUI grey[800] */
+  --orbie-secondary-red-100: #f44336;         /* MUI dark error.main */
+  --orbie-secondary-red-75: #ef5350;          /* MUI error.light */
+  --orbie-secondary-red-55: #e57373;          /* MUI red[300] */
+  --orbie-secondary-red-35: #ef9a9a;          /* MUI red[200] */
+  --orbie-secondary-red-10: #b71c1c;          /* MUI red[900] */
+  --orbie-secondary-blue-100: #29b6f6;        /* MUI info dark */
+  --orbie-secondary-blue-75: #4fc3f7;         /* MUI lightBlue[300] */
+  --orbie-secondary-blue-55: #81d4fa;         /* MUI lightBlue[200] */
+  --orbie-secondary-blue-35: #b3e5fc;         /* MUI lightBlue[100] */
+  --orbie-secondary-blue-10: #0d47a1;         /* MUI blue[900] */
+  --orbie-secondary-yellow-100: #ffa726;      /* MUI warning dark */
+  --orbie-secondary-yellow-75: #ffb74d;       /* MUI orange[300] */
+  --orbie-secondary-yellow-55: #ffcc80;       /* MUI orange[200] */
+  --orbie-secondary-yellow-35: #ffe0b2;       /* MUI orange[100] */
+  --orbie-secondary-yellow-10: #e65100;       /* MUI orange[900] */
+  --orbie-secondary-green-100: #66bb6a;       /* MUI success dark */
+  --orbie-secondary-green-75: #81c784;        /* MUI green[300] */
+  --orbie-secondary-green-55: #a5d6a7;        /* MUI green[200] */
+  --orbie-secondary-green-35: #c8e6c9;        /* MUI green[100] */
+  --orbie-secondary-green-10: #1b5e20;        /* MUI green[900] */
+  --orbie-variant-100: #e0e0e0;               /* MUI grey[300] */
+  --orbie-variant-75: #9e9e9e;                /* MUI grey[500] */
+  --orbie-variant-55: #757575;                /* MUI grey[600] */
+  --orbie-variant-35: #333333;                /* MUI dark divider */
+  --orbie-variant-10: #424242;                /* MUI grey[800] */
 
-  /* Badge tones — vibrant bg with dark text for contrast */
-  --color-orbie-blue: #1e3a5f;
-  --color-orbie-blue-bg: #9bc2ef;
-  --color-orbie-yellow: #78540a;
-  --color-orbie-yellow-bg: #f7dca8;
-  --color-orbie-red: #7f0f05;
-  --color-orbie-red-bg: #ffb0a9;
-  --color-orbie-green: #1a4a1a;
-  --color-orbie-green-bg: #a5d8a5;
+  /* Design System semantic colors — MUI dark palette */
+  --color-background: #121212;                /* MUI dark background.default */
+  --color-foreground: #ffffff;                /* MUI dark text.primary */
+  --color-card: #1e1e1e;                     /* MUI dark background.paper */
+  --color-card-foreground: #ffffff;
+  --color-popover: #1e1e1e;
+  --color-popover-foreground: #ffffff;
+  --color-primary: #90caf9;                   /* MUI dark primary.main */
+  --color-primary-foreground: #121212;
+  --color-secondary: #424242;                 /* MUI grey[800] */
+  --color-secondary-foreground: #ffffff;
+  --color-muted: #1e1e1e;                    /* MUI paper */
+  --color-muted-foreground: #b0b0b0;         /* MUI dark text.secondary */
+  --color-accent: #1a237e;                    /* MUI indigo[900] */
+  --color-accent-foreground: #90caf9;
+  --color-destructive: #f44336;               /* MUI dark error.main */
+  --color-destructive-foreground: #121212;
+  --color-border: #333333;                    /* MUI dark divider */
+  --color-input: #333333;
+  --color-ring: #90caf9;
+  --color-ghost-muted-foreground: #b0b0b0;
+
+  /* Badge tones — MUI dark semantic (lighter variant on dark surfaces) */
+  --color-orbie-blue: #29b6f6;               /* MUI info dark */
+  --color-orbie-blue-bg: #0d47a1;            /* MUI blue[900] */
+  --color-orbie-yellow: #ffa726;             /* MUI warning dark */
+  --color-orbie-yellow-bg: #e65100;          /* MUI orange[900] */
+  --color-orbie-red: #ef5350;                /* MUI error.light */
+  --color-orbie-red-bg: #b71c1c;             /* MUI red[900] */
+  --color-orbie-green: #66bb6a;              /* MUI success dark */
+  --color-orbie-green-bg: #1b5e20;           /* MUI green[900] */
 
   /* Sidebar */
-  --color-sidebar: #1e293b;
-  --color-sidebar-foreground: #f1f5f9;
-  --color-sidebar-accent: #1e3a5f;
-  --color-sidebar-accent-foreground: #a6bfeb;
-  --color-sidebar-border: #334155;
+  --color-sidebar: #1e1e1e;
+  --color-sidebar-foreground: #ffffff;
+  --color-sidebar-accent: #1a237e;
+  --color-sidebar-accent-foreground: #90caf9;
+  --color-sidebar-border: #333333;
 
   /* Component tokens */
-  --sds-input-border-default: #334155;
-  --sds-input-border-focus: #64748b;
-  --sds-input-ring-focus: #475569;
-  --sds-input-text: #f1f5f9;
-  --sds-input-placeholder: #64748b;
-  --sds-button-ghost-muted-fg: #94a3b8;
-  --sds-pagination-nav-fg: #94a3b8;
-  --sds-pagination-border: #334155;
-  --sds-progress-track: #334155;
-  --sds-progress-fill: #77ace9;
+  --sds-input-border-default: #616161;       /* MUI grey[700] */
+  --sds-input-border-focus: #90caf9;
+  --sds-input-ring-focus: #42a5f5;           /* MUI blue[400] */
+  --sds-input-text: #ffffff;
+  --sds-input-placeholder: #757575;          /* MUI grey[600] */
+  --sds-button-ghost-muted-fg: #b0b0b0;
+  --sds-pagination-nav-fg: #b0b0b0;
+  --sds-pagination-border: #616161;
+  --sds-progress-track: #424242;
+  --sds-progress-fill: #90caf9;
 }
 
 /* == Apply to Storybook iframe body == */
 body {
   background-color: var(--sb-background) !important;
   color: var(--sb-foreground) !important;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color var(--sds-theme-transition),
+    color var(--sds-theme-transition);
 }
 
 /* == Docs page container == */
 .sbdocs.sbdocs-wrapper {
   background-color: var(--sb-background) !important;
+  transition: background-color var(--sds-theme-transition);
 }
 
 .sbdocs.sbdocs-content {
   background-color: var(--sb-background) !important;
   color: var(--sb-foreground) !important;
+  transition:
+    background-color var(--sds-theme-transition),
+    color var(--sds-theme-transition);
 }
 
 /* == Docs headings == */
@@ -206,26 +268,28 @@ body {
   background-color: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans);
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color var(--sds-theme-transition),
+    color var(--sds-theme-transition);
 }
 
 /* == Canvas story container == */
 .sb-show-main {
   background-color: var(--sb-background) !important;
-  transition: background-color 0.2s ease;
+  transition: background-color var(--sds-theme-transition);
 }
 
-/* == Smooth theme transition for all elements == */
+/* == Smooth theme transition for all elements (MUI easing.easeInOut) == */
 *,
 *::before,
 *::after {
-  transition: 
-    background-color 0.15s ease-out,
-    border-color 0.15s ease-out,
-    color 0.15s ease-out,
-    fill 0.15s ease-out,
-    stroke 0.15s ease-out,
-    box-shadow 0.15s ease-out !important;
+  transition:
+    background-color var(--sds-theme-transition),
+    border-color var(--sds-theme-transition),
+    color var(--sds-theme-transition),
+    fill var(--sds-theme-transition),
+    stroke var(--sds-theme-transition),
+    box-shadow var(--sds-theme-transition) !important;
 }
 
 /* == Fade-in animation to mask re-mount flicker == */
