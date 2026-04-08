@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
-import { addons, types } from '@storybook/manager-api';
-import { create } from '@storybook/theming/create';
+import { addons, types } from 'storybook/manager-api';
+import { create } from 'storybook/theming/create';
 import { IconButton } from 'storybook/internal/components';
 
 import './manager.css';

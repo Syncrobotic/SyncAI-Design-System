@@ -3,8 +3,9 @@ import type { StorybookConfig } from '@storybook/react-vite';
 const config: StorybookConfig = {
   stories: ['../stories/**/*.mdx', '../stories/**/*.stories.@(ts|tsx)'],
   addons: [
-    '@storybook/addon-essentials',
+    '@storybook/addon-docs',
     '@storybook/addon-a11y',
+    '@storybook/addon-mcp',
   ],
   framework: {
     name: '@storybook/react-vite',
@@ -15,13 +16,11 @@ const config: StorybookConfig = {
     config.optimizeDeps.include ??= [];
     config.optimizeDeps.include.push(
       '@mdx-js/react',
-      '@storybook/blocks',
+      '@storybook/addon-docs/blocks',
     );
     return config;
   },
-  docs: {
-    autodocs: 'tag',
-  },
+
   disableWhatsNewNotifications: true,
 };
 

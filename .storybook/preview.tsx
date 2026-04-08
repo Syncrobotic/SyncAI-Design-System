@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import type { Preview } from '@storybook/react';
-import { DocsContainer } from '@storybook/blocks';
+import type { Preview } from '@storybook/react-vite';
+import { DocsContainer } from '@storybook/addon-docs/blocks';
 import { addons } from 'storybook/internal/preview-api';
 
 import '../src/globals.css';
