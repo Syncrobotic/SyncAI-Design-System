@@ -244,6 +244,70 @@ body {
   color: var(--sb-foreground) !important;
 }
 
+/*
+ * Copy button (ActionBar) inside code blocks —
+ *
+ * Goal (Option 2):
+ * 1) Remove the right-side reserved action strip.
+ * 2) Move "Copy" to a floating button at the bottom-right corner.
+ *
+ * Storybook renders code wrappers with a second child ActionBar container.
+ * We target both `.docblock-source` and the MDX structural fallback.
+ */
+
+/* Base wrapper: treat as positioning context for floating action button. */
+.sbdocs .docblock-source,
+.sbdocs div:has(> div + div > button) {
+  position: relative !important;
+  align-content: initial !important;
+  background-color: var(--sb-code-bg) !important;
+}
+
+/* Keep code content full-width; reserve small space for floating button overlap. */
+.sbdocs .docblock-source > div:first-child,
+.sbdocs div:has(> div + div > button) > div:first-child {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-right: 4.25rem !important;
+}
+
+/* Convert ActionBar container to absolute floating layer (no reserved column). */
+.sbdocs .docblock-source > div:last-child,
+.sbdocs div:has(> div + div > button) > div:last-child {
+  position: absolute !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: var(--sb-background) !important;
+  border-top: 1px solid var(--sb-border) !important;
+  border-left: 1px solid var(--sb-border) !important;
+  border-radius: 6px 0 0 0 !important;
+  pointer-events: none !important;
+}
+
+/* Floating Copy button visual style and interaction */
+.sbdocs .docblock-source > div:last-child button,
+.sbdocs div:has(> div + div > button) > div:last-child button {
+  pointer-events: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 32px !important;
+  padding: 0 12px !important;
+  background-color: transparent !important;
+  color: var(--sb-foreground) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+}
+
 /* == Docs table == */
 .sbdocs table {
   border-color: var(--sb-border) !important;
@@ -253,6 +317,7 @@ body {
 .sbdocs td {
   border-color: var(--sb-border) !important;
   color: var(--sb-foreground) !important;
+  background-color: var(--sb-background) !important;
 }
 
 .sbdocs th {
