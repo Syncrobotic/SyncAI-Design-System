@@ -69,8 +69,26 @@
   --sds-color-danger-fg: #ffffff;
   --sds-radius-md: 8px;
   --sds-radius-full: 9999px;
+
+  /* Spacing scale (base 4px) */
+  --sds-space-0_5: 2px;
+  --sds-space-1: 4px;
+  --sds-space-1_5: 6px;
   --sds-space-2: 8px;
+  --sds-space-2_5: 10px;
   --sds-space-3: 12px;
+  --sds-space-3_5: 14px;
+  --sds-space-4: 16px;
+  --sds-space-5: 20px;
+  --sds-space-6: 24px;
+  --sds-space-7: 28px;
+  --sds-space-8: 32px;
+  --sds-space-9: 36px;
+  --sds-space-10: 40px;
+  --sds-space-12: 48px;
+  --sds-space-14: 56px;
+  --sds-space-16: 64px;
+
   --sds-font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --sds-text-sm: 0.875rem;
   --sds-leading-tight: 1.25;

@@ -717,6 +717,14 @@ function themeToStyleVars(theme: SdsTheme): Record<string, string> {
     vars['--font-sans'] = theme.typography.fontFamily;
   }
 
+  /* ── Spacing scale → --sds-space-* ── */
+  const base = theme.spacing; // default 8 → 4px unit
+  const spaceSteps = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16];
+  for (const step of spaceSteps) {
+    const key = String(step).replace('.', '_');
+    vars[`--sds-space-${key}`] = `${step * (base / 2)}px`;
+  }
+
   /* ── Density → --sds-density-* ── */
   const densityTokens = DENSITY_TOKENS[theme.density] ?? DENSITY_TOKENS.comfortable;
   for (const [key, value] of Object.entries(densityTokens)) {
