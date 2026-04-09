@@ -13,8 +13,11 @@ export interface SdsPaletteColor {
   contrastText?: string;
 }
 
+/** All supported color modes. */
+export type SdsColorMode = 'light' | 'dark' | 'dim' | 'midnight' | 'amoled';
+
 export interface SdsThemePalette {
-  mode?: 'light' | 'dark';
+  mode?: SdsColorMode;
   background?: { default?: string; paper?: string };
   foreground?: { default?: string };
   primary?: SdsPaletteColor;
@@ -117,6 +120,9 @@ export interface SdsColorScheme {
 export interface SdsColorSchemes {
   light?: SdsColorScheme | true;
   dark?: SdsColorScheme | true;
+  dim?: SdsColorScheme | true;
+  midnight?: SdsColorScheme | true;
+  amoled?: SdsColorScheme | true;
 }
 
 /* ── augmentColor options ── */
@@ -154,7 +160,7 @@ type Required_<T> = { [K in keyof T]-?: NonNullable<T[K]> };
 
 export interface SdsTheme extends Required_<Omit<SdsThemeInput, 'colorSchemes' | 'tonalOffset' | 'contrastThreshold'>> {
   palette: Required_<SdsThemePalette> & {
-    mode: 'light' | 'dark';
+    mode: SdsColorMode;
     primary: Required<SdsPaletteColor>;
     secondary: Required<SdsPaletteColor>;
     muted: Required<SdsPaletteColor>;
