@@ -80,3 +80,74 @@
     font-family: var(--font-sans);
   }
 }
+
+/* ================================================================== */
+/*  Accessibility: @media queries                                      */
+/* ================================================================== */
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── High contrast ── */
+@media (prefers-contrast: more) {
+  :root {
+    --color-border: #000000;
+    --color-ring: #000000;
+    --color-muted-foreground: #374151;
+  }
+}
+
+/* ── Forced colors (Windows High Contrast) ── */
+@media (forced-colors: active) {
+  *,
+  ::before,
+  ::after {
+    forced-color-adjust: auto;
+  }
+
+  :root {
+    --color-background: Canvas;
+    --color-foreground: CanvasText;
+    --color-primary: LinkText;
+    --color-primary-foreground: Canvas;
+    --color-border: CanvasText;
+    --color-ring: Highlight;
+    --color-input: CanvasText;
+  }
+}
+
+/* ── Print ── */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  nav,
+  aside,
+  [data-sidebar],
+  [role='navigation'] {
+    display: none !important;
+  }
+
+  *,
+  ::before,
+  ::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+}
