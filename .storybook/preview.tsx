@@ -14,8 +14,22 @@ export const SDS_THEME_CHANGED = 'sds/theme-changed';
 /* ── Helpers ── */
 const STORAGE_KEY = 'sds-storybook-theme';
 
+/** Resolve 'system' to the OS-preferred mode. */
+function resolveSystemTheme(): 'light' | 'dark' {
+  try {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  } catch {
+    return 'light';
+  }
+}
+
+/** Resolve theme name — turns 'system' into 'light' or 'dark'. */
+function resolveThemeName(theme: string): string {
+  return theme === 'system' ? resolveSystemTheme() : theme;
+}
+
 function applyThemeAttribute(theme: string) {
-  document.documentElement.setAttribute('data-theme', theme || 'light');
+  document.documentElement.setAttribute('data-theme', resolveThemeName(theme));
 }
 
 function getStoredTheme(): string {
@@ -128,7 +142,7 @@ const docsThemes: Record<string, ReturnType<typeof create>> = {
 const ThemedDocsContainer: React.FC<
   React.ComponentProps<typeof DocsContainer>
 > = (props) => {
-  const [theme, setTheme] = useState<string>(getStoredTheme);
+  const [theme, setTheme] = useState<string>(() => resolveThemeName(getStoredTheme()));
 
   useEffect(() => {
     applyThemeAttribute(getStoredTheme());
@@ -142,8 +156,9 @@ const ThemedDocsContainer: React.FC<
 
     // Listen for our custom event (fired by story decorators)
     const onThemeChanged = (t: string) => {
+      const resolved = resolveThemeName(t);
       applyThemeAttribute(t);
-      setTheme(t);
+      setTheme(resolved);
     };
     channel.on(SDS_THEME_CHANGED, onThemeChanged);
 
@@ -151,13 +166,14 @@ const ThemedDocsContainer: React.FC<
     // (fires even on pure docs pages with no stories)
     const onGlobalsUpdated = (args: { globals?: Record<string, unknown> }) => {
       const t = args?.globals?.theme;
-      if (typeof t === 'string' && t !== theme) {
+      if (typeof t === 'string') {
+        const resolved = resolveThemeName(t);
         applyThemeAttribute(t);
         storeTheme(t);
-        setTheme(t);
+        setTheme(resolved);
         // Sync manager chrome as well
         try {
-          channel!.emit(SDS_THEME_CHANGED, t);
+          channel!.emit(SDS_THEME_CHANGED, resolved);
         } catch { /* */ }
       }
     };
@@ -193,15 +209,33 @@ const preview: Preview = {
         dim: 'dim',
         midnight: 'midnight',
         amoled: 'amoled',
+        system: 'system',
       },
       defaultTheme: getStoredTheme(),
       attributeName: 'data-theme',
+      parentSelector: 'html',
     }),
     (Story, context) => {
-      const theme = (context.globals.theme as string) || 'light';
+      const rawTheme = (context.globals.theme as string) || 'light';
+      const theme = resolveThemeName(rawTheme);
 
-      applyThemeAttribute(theme);
-      storeTheme(theme);
+      applyThemeAttribute(rawTheme);
+      storeTheme(rawTheme);
+
+      // Listen for OS theme changes when in system mode
+      useEffect(() => {
+        if (rawTheme !== 'system') return;
+        const mql = window.matchMedia('(prefers-color-scheme: dark)');
+        const onChange = () => {
+          const resolved = resolveSystemTheme();
+          applyThemeAttribute('system');
+          try {
+            addons.getChannel().emit(SDS_THEME_CHANGED, resolved);
+          } catch { /* */ }
+        };
+        mql.addEventListener('change', onChange);
+        return () => mql.removeEventListener('change', onChange);
+      }, [rawTheme]);
 
       useEffect(() => {
         try {
