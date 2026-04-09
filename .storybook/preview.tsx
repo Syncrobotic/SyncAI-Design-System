@@ -140,13 +140,32 @@ const ThemedDocsContainer: React.FC<
       return;
     }
 
+    // Listen for our custom event (fired by story decorators)
     const onThemeChanged = (t: string) => {
       applyThemeAttribute(t);
       setTheme(t);
     };
     channel.on(SDS_THEME_CHANGED, onThemeChanged);
+
+    // Also listen for Storybook's built-in globals update
+    // (fires even on pure docs pages with no stories)
+    const onGlobalsUpdated = (args: { globals?: Record<string, unknown> }) => {
+      const t = args?.globals?.theme;
+      if (typeof t === 'string' && t !== theme) {
+        applyThemeAttribute(t);
+        storeTheme(t);
+        setTheme(t);
+        // Sync manager chrome as well
+        try {
+          channel!.emit(SDS_THEME_CHANGED, t);
+        } catch { /* */ }
+      }
+    };
+    channel.on('globalsUpdated', onGlobalsUpdated);
+
     return () => {
       channel!.off(SDS_THEME_CHANGED, onThemeChanged);
+      channel!.off('globalsUpdated', onGlobalsUpdated);
     };
   }, []);
 
