@@ -4,6 +4,20 @@ import * as React from 'react';
 /*  Theme token types                                                  */
 /* ================================================================== */
 
+/**
+ * Extensible interface — consumers can augment the theme via:
+ *
+ * ```ts
+ * declare module '@syncai/design-system' {
+ *   interface SdsCustomTheme {
+ *     myApp: { headerHeight: number };
+ *   }
+ * }
+ * ```
+ */
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export interface SdsCustomTheme {}
+
 /* ── Palette (MUI-style: main + optional light/dark/contrastText) ── */
 
 export interface SdsPaletteColor {
@@ -15,6 +29,12 @@ export interface SdsPaletteColor {
 
 /** All supported color modes. */
 export type SdsColorMode = 'light' | 'dark' | 'dim' | 'midnight' | 'amoled';
+
+/** Contrast level — `standard` or WCAG-enhanced `high`. */
+export type SdsContrast = 'standard' | 'high';
+
+/** Density scale — controls component sizing and spacing. */
+export type SdsDensity = 'compact' | 'comfortable' | 'spacious';
 
 export interface SdsThemePalette {
   mode?: SdsColorMode;
@@ -140,6 +160,10 @@ export interface SdsThemeInput {
   typography?: SdsThemeTypography;
   shape?: SdsThemeShape;
   spacing?: number;
+  /** Contrast level — `'standard'` (default) or `'high'` (WCAG enhanced). */
+  contrast?: SdsContrast;
+  /** Density scale — `'comfortable'` (default), `'compact'`, or `'spacious'`. */
+  density?: SdsDensity;
   breakpoints?: SdsThemeBreakpoints;
   shadows?: string[];
   transitions?: SdsThemeTransitions;
@@ -158,7 +182,11 @@ export interface SdsThemeInput {
 
 type Required_<T> = { [K in keyof T]-?: NonNullable<T[K]> };
 
-export interface SdsTheme extends Required_<Omit<SdsThemeInput, 'colorSchemes' | 'tonalOffset' | 'contrastThreshold'>> {
+export interface SdsTheme extends Required_<Omit<SdsThemeInput, 'colorSchemes' | 'tonalOffset' | 'contrastThreshold' | 'contrast' | 'density'>>, SdsCustomTheme {
+  /** Active contrast level. */
+  contrast: SdsContrast;
+  /** Active density scale. */
+  density: SdsDensity;
   palette: Required_<SdsThemePalette> & {
     mode: SdsColorMode;
     primary: Required<SdsPaletteColor>;
@@ -273,6 +301,45 @@ const DEFAULT_ZINDEX: Required<SdsThemeZIndex> = {
   modal: 1300,
   snackbar: 1400,
   tooltip: 1500,
+};
+
+/* ── Density tokens ── */
+
+/**
+ * Density-dependent tokens.
+ * Each key maps to CSS vars: `--sds-density-<key>`.
+ */
+const DENSITY_TOKENS: Record<SdsDensity, Record<string, string>> = {
+  compact: {
+    'input-height': '32px',
+    'button-height': '30px',
+    'button-padding-x': '12px',
+    'button-padding-y': '4px',
+    'cell-padding-y': '4px',
+    'cell-padding-x': '8px',
+    'gap': '4px',
+    'icon-size': '16px',
+  },
+  comfortable: {
+    'input-height': '40px',
+    'button-height': '36px',
+    'button-padding-x': '16px',
+    'button-padding-y': '8px',
+    'cell-padding-y': '8px',
+    'cell-padding-x': '12px',
+    'gap': '8px',
+    'icon-size': '20px',
+  },
+  spacious: {
+    'input-height': '48px',
+    'button-height': '44px',
+    'button-padding-x': '24px',
+    'button-padding-y': '12px',
+    'cell-padding-y': '12px',
+    'cell-padding-x': '16px',
+    'gap': '12px',
+    'icon-size': '24px',
+  },
 };
 
 /* ================================================================== */
@@ -400,6 +467,40 @@ function augmentPaletteColors(
   }
 }
 
+/**
+ * Boost palette for high-contrast mode.
+ * Ensures all foreground/text colors meet WCAG AAA (7:1) against their backgrounds.
+ */
+function applyHighContrast(palette: Record<string, unknown>, mode: string): void {
+  const isDark = mode !== 'light';
+
+  // Boost border visibility
+  if (typeof palette.border === 'string') {
+    palette.border = isDark ? lighten(palette.border as string, 0.3) : darken(palette.border as string, 0.3);
+  }
+  if (typeof palette.input === 'string') {
+    palette.input = isDark ? lighten(palette.input as string, 0.25) : darken(palette.input as string, 0.25);
+  }
+
+  // Ensure text colors hit ≥ 7:1 ratio
+  const bg = isPlainObject(palette.background) ? (palette.background as Record<string, string>).default : '#ffffff';
+  if (bg) {
+    const targetRatio = 7; // WCAG AAA
+    const fg = isPlainObject(palette.foreground) ? (palette.foreground as Record<string, string>).default : undefined;
+    if (fg && contrastRatio(fg, bg) < targetRatio) {
+      (palette.foreground as Record<string, string>).default = isDark ? '#ffffff' : '#000000';
+    }
+
+    // Boost muted foreground
+    const muted = palette.muted;
+    if (isPlainObject(muted) && typeof muted.contrastText === 'string') {
+      if (contrastRatio(muted.contrastText, bg) < targetRatio) {
+        muted.contrastText = isDark ? '#d1d5db' : '#374151';
+      }
+    }
+  }
+}
+
 /** Resolve colorSchemes into the active palette based on mode. */
 function resolveColorSchemes(input: SdsThemeInput): SdsThemeInput {
   if (!input.colorSchemes) return input;
@@ -424,6 +525,8 @@ function resolveTheme(input: SdsThemeInput): SdsTheme {
 
   const tonalOffset = resolved.tonalOffset ?? 0.2;
   const contrastThreshold = resolved.contrastThreshold ?? 3;
+  const contrast = resolved.contrast ?? 'standard';
+  const density = resolved.density ?? 'comfortable';
 
   // 2. Build palette, then auto-augment colors
   const palette = deepMerge(
@@ -431,6 +534,11 @@ function resolveTheme(input: SdsThemeInput): SdsTheme {
     (resolved.palette ?? {}) as Record<string, unknown>,
   ) as Record<string, unknown>;
   augmentPaletteColors(palette, tonalOffset, contrastThreshold);
+
+  // 2b. Apply high-contrast adjustments when requested
+  if (contrast === 'high') {
+    applyHighContrast(palette, (palette.mode as string) ?? 'light');
+  }
 
   // 3. Attach augmentColor + getContrastText methods to the palette
   (palette as Record<string, unknown>).augmentColor = (opts: AugmentColorOptions) =>
@@ -458,6 +566,8 @@ function resolveTheme(input: SdsThemeInput): SdsTheme {
     typography,
     shape,
     spacing: spacingBase,
+    contrast,
+    density,
     breakpoints: { ...DEFAULT_BREAKPOINTS, ...resolved.breakpoints },
     shadows: resolved.shadows ?? [...DEFAULT_SHADOWS],
     transitions,
@@ -607,6 +717,12 @@ function themeToStyleVars(theme: SdsTheme): Record<string, string> {
     vars['--font-sans'] = theme.typography.fontFamily;
   }
 
+  /* ── Density → --sds-density-* ── */
+  const densityTokens = DENSITY_TOKENS[theme.density] ?? DENSITY_TOKENS.comfortable;
+  for (const [key, value] of Object.entries(densityTokens)) {
+    vars[`--sds-density-${key}`] = value;
+  }
+
   /* ── Component tokens → --sds-<component>-* ── */
   if (theme.components) {
     for (const [comp, tokens] of Object.entries(theme.components)) {
@@ -620,6 +736,18 @@ function themeToStyleVars(theme: SdsTheme): Record<string, string> {
   /* ── z-index → --sds-z-* ── */
   for (const [key, value] of Object.entries(theme.zIndex)) {
     if (value != null) vars[`--sds-z-${camelToKebab(key)}`] = String(value);
+  }
+
+  /* ── Transitions → --sds-duration-*, --sds-easing-* ── */
+  if (theme.transitions.duration) {
+    for (const [key, value] of Object.entries(theme.transitions.duration)) {
+      if (value != null) vars[`--sds-duration-${key}`] = value;
+    }
+  }
+  if (theme.transitions.easing) {
+    for (const [key, value] of Object.entries(theme.transitions.easing)) {
+      if (value != null) vars[`--sds-easing-${camelToKebab(key)}`] = value;
+    }
   }
 
   /* ── Escape-hatch cssVars ── */
