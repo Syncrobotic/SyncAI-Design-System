@@ -192,6 +192,270 @@
   --sds-color-danger-fg: #121212;
 }
 
+/* == Dim theme — GitHub/Discord soft dark == */
+:root[data-theme='dim'] {
+  color-scheme: dark;
+
+  --sb-background: #22272e;
+  --sb-foreground: #adbac7;
+  --sb-muted: #768390;
+  --sb-border: #444c56;
+  --sb-code-bg: #2d333b;
+
+  --orbie-bg-surface: #22272e;
+  --orbie-bg-muted: #2d333b;
+  --orbie-primary-violet-100: #539bf5;
+  --orbie-primary-violet-75: #6cb6ff;
+  --orbie-primary-violet-55: #539bf5;
+  --orbie-primary-violet-35: #316dca;
+  --orbie-primary-violet-10: #1c3a5c;
+  --orbie-primary-gray-100: #adbac7;
+  --orbie-primary-gray-75: #768390;
+  --orbie-primary-gray-55: #636e7b;
+  --orbie-primary-gray-35: #444c56;
+  --orbie-primary-gray-10: #373e47;
+  --orbie-secondary-red-100: #e5534b;
+  --orbie-secondary-blue-100: #6cb6ff;
+  --orbie-secondary-blue-10: #1c3a5c;
+  --orbie-secondary-yellow-100: #daaa3f;
+  --orbie-secondary-yellow-10: #3d2e00;
+  --orbie-secondary-green-100: #57ab5a;
+  --orbie-secondary-green-10: #1b4721;
+  --orbie-secondary-red-10: #5c211e;
+  --orbie-variant-35: #444c56;
+  --orbie-variant-10: #373e47;
+
+  --color-background: #22272e;
+  --color-foreground: #adbac7;
+  --color-card: #2d333b;
+  --color-card-foreground: #adbac7;
+  --color-popover: #2d333b;
+  --color-popover-foreground: #adbac7;
+  --color-primary: #539bf5;
+  --color-primary-foreground: #22272e;
+  --color-secondary: #373e47;
+  --color-secondary-foreground: #adbac7;
+  --color-muted: #2d333b;
+  --color-muted-foreground: #768390;
+  --color-accent: #263c57;
+  --color-accent-foreground: #6cb6ff;
+  --color-destructive: #e5534b;
+  --color-destructive-foreground: #22272e;
+  --color-border: #444c56;
+  --color-input: #444c56;
+  --color-ring: #539bf5;
+  --color-ghost-muted-foreground: #768390;
+  --color-orbie-blue: #6cb6ff;
+  --color-orbie-blue-bg: #1c3a5c;
+  --color-orbie-yellow: #daaa3f;
+  --color-orbie-yellow-bg: #3d2e00;
+  --color-orbie-red: #f47067;
+  --color-orbie-red-bg: #5c211e;
+  --color-orbie-green: #57ab5a;
+  --color-orbie-green-bg: #1b4721;
+  --color-sidebar: #2d333b;
+  --color-sidebar-foreground: #adbac7;
+  --color-sidebar-accent: #263c57;
+  --color-sidebar-accent-foreground: #6cb6ff;
+  --color-sidebar-border: #444c56;
+
+  --sds-input-border-default: #444c56;
+  --sds-input-border-focus: #539bf5;
+  --sds-input-ring-focus: #316dca;
+  --sds-input-text: #adbac7;
+  --sds-input-placeholder: #636e7b;
+  --sds-button-ghost-muted-fg: #768390;
+  --sds-pagination-nav-fg: #768390;
+  --sds-pagination-border: #444c56;
+  --sds-progress-track: #373e47;
+  --sds-progress-fill: #539bf5;
+
+  --sds-color-bg: #22272e;
+  --sds-color-fg: #adbac7;
+  --sds-color-muted: #768390;
+  --sds-color-border: #444c56;
+  --sds-color-primary: #539bf5;
+  --sds-color-primary-fg: #22272e;
+  --sds-color-danger: #e5534b;
+  --sds-color-danger-fg: #22272e;
+}
+
+/* == Midnight theme — deep blue brand feel == */
+:root[data-theme='midnight'] {
+  color-scheme: dark;
+
+  --sb-background: #0a1929;
+  --sb-foreground: #b2bac2;
+  --sb-muted: #7b8fa3;
+  --sb-border: #1e3a5f;
+  --sb-code-bg: #0f2744;
+
+  --orbie-bg-surface: #0a1929;
+  --orbie-bg-muted: #0f2744;
+  --orbie-primary-violet-100: #5090d3;
+  --orbie-primary-violet-75: #7eb8f0;
+  --orbie-primary-violet-55: #5090d3;
+  --orbie-primary-violet-35: #3a6ea5;
+  --orbie-primary-violet-10: #132f4c;
+  --orbie-primary-gray-100: #b2bac2;
+  --orbie-primary-gray-75: #7b8fa3;
+  --orbie-primary-gray-55: #5a6f83;
+  --orbie-primary-gray-35: #1e3a5f;
+  --orbie-primary-gray-10: #1a2b42;
+  --orbie-secondary-red-100: #f06292;
+  --orbie-secondary-blue-100: #7eb8f0;
+  --orbie-secondary-blue-10: #132f4c;
+  --orbie-secondary-yellow-100: #ffb74d;
+  --orbie-secondary-yellow-10: #3e2723;
+  --orbie-secondary-green-100: #66bb6a;
+  --orbie-secondary-green-10: #1b3a1b;
+  --orbie-secondary-red-10: #4a1a2e;
+  --orbie-variant-35: #1e3a5f;
+  --orbie-variant-10: #1a2b42;
+
+  --color-background: #0a1929;
+  --color-foreground: #b2bac2;
+  --color-card: #0f2744;
+  --color-card-foreground: #b2bac2;
+  --color-popover: #0f2744;
+  --color-popover-foreground: #b2bac2;
+  --color-primary: #5090d3;
+  --color-primary-foreground: #0a1929;
+  --color-secondary: #1a2b42;
+  --color-secondary-foreground: #b2bac2;
+  --color-muted: #0f2744;
+  --color-muted-foreground: #7b8fa3;
+  --color-accent: #132f4c;
+  --color-accent-foreground: #7eb8f0;
+  --color-destructive: #f06292;
+  --color-destructive-foreground: #0a1929;
+  --color-border: #1e3a5f;
+  --color-input: #1e3a5f;
+  --color-ring: #5090d3;
+  --color-ghost-muted-foreground: #7b8fa3;
+  --color-orbie-blue: #7eb8f0;
+  --color-orbie-blue-bg: #132f4c;
+  --color-orbie-yellow: #ffb74d;
+  --color-orbie-yellow-bg: #3e2723;
+  --color-orbie-red: #f48fb1;
+  --color-orbie-red-bg: #4a1a2e;
+  --color-orbie-green: #66bb6a;
+  --color-orbie-green-bg: #1b3a1b;
+  --color-sidebar: #0f2035;
+  --color-sidebar-foreground: #b2bac2;
+  --color-sidebar-accent: #132f4c;
+  --color-sidebar-accent-foreground: #7eb8f0;
+  --color-sidebar-border: #1e3a5f;
+
+  --sds-input-border-default: #1e3a5f;
+  --sds-input-border-focus: #5090d3;
+  --sds-input-ring-focus: #3a6ea5;
+  --sds-input-text: #b2bac2;
+  --sds-input-placeholder: #5a6f83;
+  --sds-button-ghost-muted-fg: #7b8fa3;
+  --sds-pagination-nav-fg: #7b8fa3;
+  --sds-pagination-border: #1e3a5f;
+  --sds-progress-track: #1a2b42;
+  --sds-progress-fill: #5090d3;
+
+  --sds-color-bg: #0a1929;
+  --sds-color-fg: #b2bac2;
+  --sds-color-muted: #7b8fa3;
+  --sds-color-border: #1e3a5f;
+  --sds-color-primary: #5090d3;
+  --sds-color-primary-fg: #0a1929;
+  --sds-color-danger: #f06292;
+  --sds-color-danger-fg: #0a1929;
+}
+
+/* == AMOLED theme — pure black for OLED == */
+:root[data-theme='amoled'] {
+  color-scheme: dark;
+
+  --sb-background: #000000;
+  --sb-foreground: #e4e4e7;
+  --sb-muted: #71717a;
+  --sb-border: #27272a;
+  --sb-code-bg: #0a0a0a;
+
+  --orbie-bg-surface: #000000;
+  --orbie-bg-muted: #0a0a0a;
+  --orbie-primary-violet-100: #818cf8;
+  --orbie-primary-violet-75: #a5b4fc;
+  --orbie-primary-violet-55: #818cf8;
+  --orbie-primary-violet-35: #6366f1;
+  --orbie-primary-violet-10: #1e1b4b;
+  --orbie-primary-gray-100: #e4e4e7;
+  --orbie-primary-gray-75: #a1a1aa;
+  --orbie-primary-gray-55: #71717a;
+  --orbie-primary-gray-35: #3f3f46;
+  --orbie-primary-gray-10: #27272a;
+  --orbie-secondary-red-100: #fb7185;
+  --orbie-secondary-blue-100: #93c5fd;
+  --orbie-secondary-blue-10: #172554;
+  --orbie-secondary-yellow-100: #fcd34d;
+  --orbie-secondary-yellow-10: #422006;
+  --orbie-secondary-green-100: #86efac;
+  --orbie-secondary-green-10: #052e16;
+  --orbie-secondary-red-10: #4c0519;
+  --orbie-variant-35: #27272a;
+  --orbie-variant-10: #18181b;
+
+  --color-background: #000000;
+  --color-foreground: #e4e4e7;
+  --color-card: #0a0a0a;
+  --color-card-foreground: #e4e4e7;
+  --color-popover: #0a0a0a;
+  --color-popover-foreground: #e4e4e7;
+  --color-primary: #818cf8;
+  --color-primary-foreground: #000000;
+  --color-secondary: #18181b;
+  --color-secondary-foreground: #e4e4e7;
+  --color-muted: #0a0a0a;
+  --color-muted-foreground: #71717a;
+  --color-accent: #1e1b4b;
+  --color-accent-foreground: #a5b4fc;
+  --color-destructive: #fb7185;
+  --color-destructive-foreground: #000000;
+  --color-border: #27272a;
+  --color-input: #27272a;
+  --color-ring: #818cf8;
+  --color-ghost-muted-foreground: #71717a;
+  --color-orbie-blue: #93c5fd;
+  --color-orbie-blue-bg: #172554;
+  --color-orbie-yellow: #fcd34d;
+  --color-orbie-yellow-bg: #422006;
+  --color-orbie-red: #fda4af;
+  --color-orbie-red-bg: #4c0519;
+  --color-orbie-green: #86efac;
+  --color-orbie-green-bg: #052e16;
+  --color-sidebar: #000000;
+  --color-sidebar-foreground: #e4e4e7;
+  --color-sidebar-accent: #1e1b4b;
+  --color-sidebar-accent-foreground: #a5b4fc;
+  --color-sidebar-border: #27272a;
+
+  --sds-input-border-default: #27272a;
+  --sds-input-border-focus: #818cf8;
+  --sds-input-ring-focus: #6366f1;
+  --sds-input-text: #e4e4e7;
+  --sds-input-placeholder: #52525b;
+  --sds-button-ghost-muted-fg: #71717a;
+  --sds-pagination-nav-fg: #71717a;
+  --sds-pagination-border: #27272a;
+  --sds-progress-track: #18181b;
+  --sds-progress-fill: #818cf8;
+
+  --sds-color-bg: #000000;
+  --sds-color-fg: #e4e4e7;
+  --sds-color-muted: #71717a;
+  --sds-color-border: #27272a;
+  --sds-color-primary: #818cf8;
+  --sds-color-primary-fg: #000000;
+  --sds-color-danger: #fb7185;
+  --sds-color-danger-fg: #000000;
+}
+
 /* == Apply to Storybook iframe body == */
 body {
   background-color: var(--sb-background) !important;
