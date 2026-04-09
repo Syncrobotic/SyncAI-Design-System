@@ -561,6 +561,36 @@ function themeToStyleVars(theme: SdsTheme): Record<string, string> {
     if (p.sidebar.border) vars['--color-sidebar-border'] = p.sidebar.border;
   }
 
+  /* ── Orbie token overrides ──
+   * Tailwind v4 `@theme inline` inlines `var(--orbie-*)` references into
+   * utility classes (e.g. `text-secondary-foreground` → `color: var(--orbie-primary-gray-100)`).
+   * We must override these underlying tokens for runtime theme switching. */
+  if (p.background?.default) vars['--orbie-bg-surface'] = p.background.default;
+  if (p.muted?.main) vars['--orbie-bg-muted'] = p.muted.main;
+  if (p.foreground?.default) vars['--orbie-primary-gray-100'] = p.foreground.default;
+  if (p.muted?.contrastText) vars['--orbie-primary-gray-75'] = p.muted.contrastText;
+  if (p.muted?.dark) vars['--orbie-primary-gray-55'] = p.muted.dark;
+  if (p.secondary?.dark) vars['--orbie-primary-gray-35'] = p.secondary.dark;
+  if (p.secondary?.main) vars['--orbie-primary-gray-10'] = p.secondary.main;
+  if (p.primary?.main) vars['--orbie-primary-violet-100'] = p.primary.main;
+  if (p.primary?.light) vars['--orbie-primary-violet-75'] = p.primary.light;
+  if (p.primary?.dark) vars['--orbie-primary-violet-55'] = p.primary.dark;
+  if (p.accent?.light) vars['--orbie-primary-violet-35'] = p.accent.light;
+  if (p.accent?.main) vars['--orbie-primary-violet-10'] = p.accent.main;
+  if (p.destructive?.main) vars['--orbie-secondary-red-100'] = p.destructive.main;
+  if (p.border) vars['--orbie-variant-35'] = p.border;
+  if (p.sidebar?.border) vars['--orbie-variant-10'] = p.sidebar.border;
+
+  // Badge tones → --orbie-secondary-*
+  if (p.orbieBlue?.text) vars['--orbie-secondary-blue-100'] = p.orbieBlue.text;
+  if (p.orbieBlue?.bg) vars['--orbie-secondary-blue-10'] = p.orbieBlue.bg;
+  if (p.orbieYellow?.text) vars['--orbie-secondary-yellow-100'] = p.orbieYellow.text;
+  if (p.orbieYellow?.bg) vars['--orbie-secondary-yellow-10'] = p.orbieYellow.bg;
+  if (p.orbieRed?.text) vars['--orbie-secondary-red-100'] = p.orbieRed.text;
+  if (p.orbieRed?.bg) vars['--orbie-secondary-red-10'] = p.orbieRed.bg;
+  if (p.orbieGreen?.text) vars['--orbie-secondary-green-100'] = p.orbieGreen.text;
+  if (p.orbieGreen?.bg) vars['--orbie-secondary-green-10'] = p.orbieGreen.bg;
+
   /* ── Shape → --radius-* ── */
   for (const [key, value] of Object.entries(theme.shape.borderRadius)) {
     if (value != null) vars[`--radius-${key}`] = value;
