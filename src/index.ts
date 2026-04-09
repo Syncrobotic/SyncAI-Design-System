@@ -113,6 +113,7 @@ export {
   type SdsComponentTokens,
   type SdsColorScheme,
   type SdsColorSchemes,
+  type SdsColorMode,
   type AugmentColorOptions,
   type SdsThemeColors,
   type SdsThemeRadius,
@@ -125,6 +126,12 @@ export {
   lightThemeInput,
   darkTheme,
   darkThemeInput,
+  dimTheme,
+  dimThemeInput,
+  midnightTheme,
+  midnightThemeInput,
+  amoledTheme,
+  amoledThemeInput,
 } from './themes';
 export {
   ORBIE_FIGMA_NODE_COLORS_BOARD,
