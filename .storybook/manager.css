@@ -33,6 +33,48 @@
   --sds-manager-selected-bg: #1e3a5f;
 }
 
+/* == CSS Variables for Dim Theme (GitHub-style soft dark) == */
+:root.sds-dim {
+  --sds-manager-bg: #22272e;
+  --sds-manager-content-bg: #2d333b;
+  --sds-manager-border: #444c56;
+  --sds-manager-text: #adbac7;
+  --sds-manager-text-muted: #768390;
+  --sds-manager-bar-bg: #2d333b;
+  --sds-manager-bar-text: #768390;
+  --sds-manager-primary: #539bf5;
+  --sds-manager-hover-bg: #373e47;
+  --sds-manager-selected-bg: #263d55;
+}
+
+/* == CSS Variables for Midnight Theme (deep blue) == */
+:root.sds-midnight {
+  --sds-manager-bg: #0a1929;
+  --sds-manager-content-bg: #0f2744;
+  --sds-manager-border: #1e3a5f;
+  --sds-manager-text: #b2bac2;
+  --sds-manager-text-muted: #7b8fa3;
+  --sds-manager-bar-bg: #0f2744;
+  --sds-manager-bar-text: #7b8fa3;
+  --sds-manager-primary: #5090d3;
+  --sds-manager-hover-bg: #173456;
+  --sds-manager-selected-bg: #1e4976;
+}
+
+/* == CSS Variables for AMOLED Theme (pure black) == */
+:root.sds-amoled {
+  --sds-manager-bg: #000000;
+  --sds-manager-content-bg: #0a0a0a;
+  --sds-manager-border: #27272a;
+  --sds-manager-text: #e4e4e7;
+  --sds-manager-text-muted: #71717a;
+  --sds-manager-bar-bg: #0a0a0a;
+  --sds-manager-bar-text: #71717a;
+  --sds-manager-primary: #818cf8;
+  --sds-manager-hover-bg: #18181b;
+  --sds-manager-selected-bg: #1e1b4b;
+}
+
 /* == Sidebar == */
 .os-viewport,
 [id*="storybook"][id*="panel"],
@@ -131,12 +173,18 @@ input::placeholder {
   color: var(--sds-manager-text) !important;
 }
 
-/* == Scrollbar styling for dark mode == */
-:root.sds-dark ::-webkit-scrollbar-track {
+/* == Scrollbar styling for dark modes == */
+:root.sds-dark ::-webkit-scrollbar-track,
+:root.sds-dim ::-webkit-scrollbar-track,
+:root.sds-midnight ::-webkit-scrollbar-track,
+:root.sds-amoled ::-webkit-scrollbar-track {
   background: var(--sds-manager-bg);
 }
 
-:root.sds-dark ::-webkit-scrollbar-thumb {
+:root.sds-dark ::-webkit-scrollbar-thumb,
+:root.sds-dim ::-webkit-scrollbar-thumb,
+:root.sds-midnight ::-webkit-scrollbar-thumb,
+:root.sds-amoled ::-webkit-scrollbar-thumb {
   background: var(--sds-manager-border);
 }
 
