@@ -23,7 +23,7 @@ export type BreadcrumbProps = {
 
 export function Breadcrumb({ items, ariaLabel = 'Breadcrumb', className }: BreadcrumbProps) {
   return (
-    <UiBreadcrumb className={cn('min-h-9', className)} aria-label={ariaLabel} data-sds-component="Breadcrumb">
+    <UiBreadcrumb className={cn('min-h-9 h-full flex items-center', className)} aria-label={ariaLabel} data-sds-component="Breadcrumb">
       <BreadcrumbList className="text-[14px] leading-[21px] tracking-[0.07px]">
         {items.map((item, index) => {
           const segment = (
